@@ -203,6 +203,7 @@ public class BlockCrop extends BlockCrops implements IHasModel {
 		@Override
 		public String getItemStackDisplayName(ItemStack stack) {
 			String nameFinal = "";
+			nameFinal += I18n.translateToLocal("tile.mysticalcreations.crop.name.before");
 			String[] name = this.name.split("_");
 			if(name.length > 1) {
 				for(String string : name) {

@@ -37,7 +37,7 @@ public class ItemChunk extends Item implements IHasModel {
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
 		String nameFinal = "";
-		nameFinal += I18n.translateToLocal("tile.mysticalcreations.chunk.name.before");
+		nameFinal += I18n.translateToLocal("item.mysticalcreations.chunk.name.before");
 		String[] name = this.name.split("_");
 		if(name.length > 1) {
 			for(String string : name) {

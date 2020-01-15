@@ -25,7 +25,7 @@ public class ItemEssence extends Item implements IHasModel {
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
 		String nameFinal = "";
-		nameFinal += I18n.translateToLocal("tile.mysticalcreations.essence.name.before");
+		nameFinal += I18n.translateToLocal("item.mysticalcreations.essence.name.before");
 		String[] name = this.name.split("_");
 		if(name.length > 1) {
 			for(String string : name) {

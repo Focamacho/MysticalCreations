@@ -62,6 +62,7 @@ public class RegistryHandler {
 			MysticalCreations.proxy.registerBlockColorHandler(seed);
 			if(seed.getChunk() != null) MysticalCreations.proxy.registerItemColorHandler(seed.getChunk(), seed.getColor(), 0);
 		}
+		MinecraftForge.EVENT_BUS.register(new MobDropsHandler());
 	}
 	
 	public static void postInitRegistries(FMLPostInitializationEvent event) {

@@ -14,6 +14,7 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 public class CustomSeeds {
 
 	public static List<CustomSeed> allSeeds = new ArrayList<CustomSeed>();
+	public static List<CustomSeed> chunkSeeds = new ArrayList<CustomSeed>();
 	
 	public static void init() {
 		for(String config : ModConfig.CUSTOM_SEED_LIST) {

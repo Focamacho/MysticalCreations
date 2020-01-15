@@ -24,6 +24,7 @@ public class CustomSeed {
 	private int color;
 	private Block crux;
 	private ItemChunk chunk;
+	private EntityEntry entity;
 	
 	public CustomSeed(String name, Integer tier, Integer color, @Nullable Block crux, @Nullable EntityEntry entity) {
 		BlockCrop crop = new BlockCrop(name, crux);
@@ -44,9 +45,13 @@ public class CustomSeed {
 		this.seed = seed;
 		this.tier = tier;
 		this.color = color;
+		this.entity = entity;
 		if(crux != null) this.crux = crux;
 		else crux = null;
-		if(entity != null) this.chunk = chunk;
+		if(entity != null) {
+			this.chunk = chunk;
+			CustomSeeds.chunkSeeds.add(this);
+		}
 		else this.chunk = null;
 		CustomSeeds.allSeeds.add(this);
 	}
@@ -85,5 +90,9 @@ public class CustomSeed {
 	
 	public ItemChunk getChunk() {
 		return this.chunk;
+	}
+	
+	public EntityEntry getEntity() {
+		return this.entity;
 	}
 }

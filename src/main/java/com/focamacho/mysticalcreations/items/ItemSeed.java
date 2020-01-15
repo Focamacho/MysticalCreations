@@ -70,7 +70,7 @@ public class ItemSeed extends ItemSeeds implements IHasModel {
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
 		String nameFinal = "";
-		nameFinal += I18n.translateToLocal("tile.mysticalcreations.seeds.name.before");
+		nameFinal += I18n.translateToLocal("item.mysticalcreations.seeds.name.before");
 		String[] name = this.name.split("_");
 		if(name.length > 1) {
 			for(String string : name) {
