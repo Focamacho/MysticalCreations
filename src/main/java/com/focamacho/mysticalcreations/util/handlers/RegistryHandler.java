@@ -63,6 +63,7 @@ public class RegistryHandler {
 			if(seed.getChunk() != null) MysticalCreations.proxy.registerItemColorHandler(seed.getChunk(), seed.getColor(), 0);
 		}
 		MinecraftForge.EVENT_BUS.register(new MobDropsHandler());
+		if(com.blakebr0.mysticalagriculture.config.ModConfig.confMysticalFertilizer) MinecraftForge.EVENT_BUS.register(new FertilizerHandler());
 	}
 	
 	public static void postInitRegistries(FMLPostInitializationEvent event) {

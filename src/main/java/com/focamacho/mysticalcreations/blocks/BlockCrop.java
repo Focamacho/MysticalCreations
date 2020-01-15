@@ -86,8 +86,12 @@ public class BlockCrop extends BlockCrops implements IHasModel {
 
 	@Override
     public boolean canUseBonemeal(World world, Random rand, BlockPos pos, IBlockState state){
-        return true;
+        return false;
     }
+	
+	public int getTier() {
+		return this.tier;
+	}
 	
 	@Override
 	public void grow(World world, Random rand, BlockPos pos, IBlockState state) {
@@ -141,19 +145,17 @@ public class BlockCrop extends BlockCrops implements IHasModel {
         int fertilizer = 0;
         int seeds = 1;
         
-        if(this.tier != 6) {
-	        if(age == 7){
-	        	if(ModConfig.confSeedChance > 0){
-	        		if(rand.nextInt(100 / ModConfig.confSeedChance) > 0){
-	        			seeds = 1;	
-	        		} else {
-	        			seeds = 2;
-	        		}
-	        	}
-	        	else {
-	        		seeds = 1;
-	        	}
-	        }
+        if(age == 7){
+	       	if(ModConfig.confSeedChance > 0 && this.tier != 6){
+	       		if(rand.nextInt(100 / ModConfig.confSeedChance) > 0){
+	        		seeds = 1;	
+	       		} else {
+	       			seeds = 2;
+	       		}
+	       	}
+	       	else {
+	       		seeds = 1;
+	       	}
         }
         
         if(age == 7){
