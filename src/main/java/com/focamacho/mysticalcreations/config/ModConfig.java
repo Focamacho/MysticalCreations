@@ -32,7 +32,7 @@ public class ModConfig {
 		String category;
 		
 		category = "Custom Seeds";
-		config.addCustomCategoryComment(category, "Enable/Disable Principal Mechanics");
+		config.addCustomCategoryComment(category, "Custom seeds creator");
 		CUSTOM_SEED_LIST = config.get(category, "CUSTOM_SEED_LIST", new String[] {"base,1,FF8F00", "foda,2,f70202", "brabo,3,00fbff", "tenso,4,c602ed", "indignado,5,00ff0d", "brabissimo,6,eeff00"}).getStringList();
 		
 		if(config.hasChanged()){
