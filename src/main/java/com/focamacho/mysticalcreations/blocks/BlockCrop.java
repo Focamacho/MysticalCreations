@@ -1,37 +1,24 @@
 package com.focamacho.mysticalcreations.blocks;
 
-import java.util.Map;
 import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import org.apache.commons.lang3.StringEscapeUtils;
-
 import com.blakebr0.cucumber.util.Utils;
 import com.blakebr0.mysticalagriculture.config.ModConfig;
 import com.blakebr0.mysticalagriculture.items.ModItems;
-import com.focamacho.mysticalcreations.MysticalCreations;
-import com.focamacho.mysticalcreations.lib.CustomSeed;
 import com.focamacho.mysticalcreations.util.IHasModel;
 
-import it.unimi.dsi.fastutil.Maps;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
-import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.block.statemap.DefaultStateMapper;
-import net.minecraft.client.renderer.block.statemap.IStateMapper;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemMultiTexture.Mapper;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -40,7 +27,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.EnumPlantType;
-import net.minecraftforge.common.IPlantable;
 
 public class BlockCrop extends BlockCrops implements IHasModel {
 	

@@ -2,6 +2,8 @@ package com.focamacho.mysticalcreations;
 
 import java.io.File;
 
+import org.apache.logging.log4j.Logger;
+
 import com.focamacho.mysticalcreations.proxy.CommonProxy;
 import com.focamacho.mysticalcreations.util.Reference;
 import com.focamacho.mysticalcreations.util.handlers.RegistryHandler;
@@ -13,7 +15,6 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import org.apache.logging.log4j.Logger;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION, dependencies = Reference.DEPENDENCIES)
 public class MysticalCreations {

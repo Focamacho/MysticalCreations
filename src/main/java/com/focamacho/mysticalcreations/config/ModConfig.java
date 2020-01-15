@@ -37,7 +37,7 @@ public class ModConfig {
 												+ "- Syntax: name;tier;color;crux;entity\n"
 												+ "- 'name' should be lower case with underscores for spaces.\n"
 												+ "- 'tier' should be 1, 2, 3, 4, 5 or 6.\n"
-												+ "- 'color' the color of the singularity as a hex value. http://htmlcolorcodes.com/\n"
+												+ "- 'color' the color of the seed as a hex value. http://htmlcolorcodes.com/\n"
 												+ "- 'crux' can be any block, leave this as null if you don't want to use crux\n"
 												+ "Example: minecraft:diamond_block\n"
 												+ "- 'entity' can be any entity, leave this as null if you don't want mob chunks\n"

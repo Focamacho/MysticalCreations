@@ -7,7 +7,6 @@ import com.focamacho.mysticalcreations.MysticalCreations;
 import com.focamacho.mysticalcreations.config.ModConfig;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.EntityList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;

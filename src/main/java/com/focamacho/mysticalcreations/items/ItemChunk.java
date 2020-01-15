@@ -7,11 +7,9 @@ import javax.annotation.Nullable;
 import com.blakebr0.cucumber.lib.Colors;
 import com.blakebr0.mysticalagriculture.MysticalAgriculture;
 import com.blakebr0.mysticalagriculture.lib.Tooltips;
-import com.focamacho.mysticalcreations.MysticalCreations;
 import com.focamacho.mysticalcreations.util.IHasModel;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

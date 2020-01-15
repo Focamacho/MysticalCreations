@@ -1,7 +1,5 @@
 package com.focamacho.mysticalcreations.util.handlers;
 
-import com.focamacho.mysticalcreations.blocks.BlockCrop;
-
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.item.ItemStack;
 

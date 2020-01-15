@@ -5,14 +5,12 @@ import javax.annotation.Nullable;
 import com.focamacho.mysticalcreations.blocks.BlockCrop;
 import com.focamacho.mysticalcreations.init.ModBlocks;
 import com.focamacho.mysticalcreations.init.ModItems;
-import com.focamacho.mysticalcreations.items.ItemBase;
 import com.focamacho.mysticalcreations.items.ItemChunk;
 import com.focamacho.mysticalcreations.items.ItemEssence;
 import com.focamacho.mysticalcreations.items.ItemSeed;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 
 public class CustomSeed {

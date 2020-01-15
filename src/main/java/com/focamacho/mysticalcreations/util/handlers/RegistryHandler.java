@@ -1,35 +1,18 @@
 package com.focamacho.mysticalcreations.util.handlers;
 
 import java.io.File;
-import java.util.Map;
 
 import com.focamacho.mysticalcreations.MysticalCreations;
-import com.focamacho.mysticalcreations.blocks.BlockBase;
-import com.focamacho.mysticalcreations.blocks.BlockCrop;
 import com.focamacho.mysticalcreations.config.ModConfig;
 import com.focamacho.mysticalcreations.init.ModBlocks;
 import com.focamacho.mysticalcreations.init.ModItems;
-import com.focamacho.mysticalcreations.items.ItemEssence;
-import com.focamacho.mysticalcreations.items.ItemSeed;
 import com.focamacho.mysticalcreations.lib.CustomSeed;
 import com.focamacho.mysticalcreations.lib.CustomSeeds;
 import com.focamacho.mysticalcreations.util.IHasModel;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.block.statemap.IStateMapper;
-import net.minecraft.client.renderer.block.statemap.StateMap;
-import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemMultiTexture.Mapper;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
