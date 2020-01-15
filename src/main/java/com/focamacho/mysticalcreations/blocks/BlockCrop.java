@@ -12,6 +12,7 @@ import com.focamacho.mysticalcreations.util.IHasModel;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.state.BlockStateBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
@@ -35,10 +36,10 @@ public class BlockCrop extends BlockCrops implements IHasModel {
     private Item crop;
     private Item essence;
     private String name;
-    private Block crux;
+    private ItemStack crux;
     private int tier;
     
-    public BlockCrop(String name, @Nullable Block crux, int tier){
+    public BlockCrop(String name, @Nullable ItemStack crux, int tier){
 		this.setUnlocalizedName(name + "_crop");
 		this.setRegistryName(name + "_crop");
         this.setCreativeTab((CreativeTabs)null);
@@ -74,7 +75,9 @@ public class BlockCrop extends BlockCrops implements IHasModel {
 	    	if(i < this.getMaxAge()){
 	    		float f = getGrowthChance(this, world, pos);
 	    		if(rand.nextInt((int)(35.0F / f) + 1) == 0) {
-	    			world.setBlockState(pos, this.withAge(i + 1), 2);
+	    			if(this.canGrow(world, pos, state, world.isRemote)) {
+	    				world.setBlockState(pos, this.withAge(i + 1), 2);
+	    			}
 	    		}
 	    	}
         }
@@ -88,17 +91,22 @@ public class BlockCrop extends BlockCrops implements IHasModel {
     public boolean canUseBonemeal(World world, Random rand, BlockPos pos, IBlockState state){
         return false;
     }
-	
-	public int getTier() {
-		return this.tier;
+
+	@Override
+	public void grow(World world, Random rand, BlockPos pos, IBlockState state) {
+		if(this.crux != null && world.getBlockState(pos.down(2)) != Block.getBlockFromItem(this.crux.getItem()).getStateFromMeta(this.crux.getMetadata()))
+			return;
+		super.grow(world, rand, pos, state);
 	}
 	
 	@Override
-	public void grow(World world, Random rand, BlockPos pos, IBlockState state) {
-		if (this.crux != null && world.getBlockState(pos.down(2)) != this.crux)
-			return;
-		
-		super.grow(world, rand, pos, state);
+	public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient) {
+		if(this.crux != null && worldIn.getBlockState(pos.down(2)) != Block.getBlockFromItem(this.crux.getItem()).getStateFromMeta(this.crux.getMetadata())) return false;
+		return super.canGrow(worldIn, pos, state, isClient);
+	}
+	
+	public int getTier() {
+		return this.tier;
 	}
 	
     @Override
@@ -115,6 +123,10 @@ public class BlockCrop extends BlockCrops implements IHasModel {
     	return this;
     }
 
+    public ItemStack getCrux() {
+    	return this.crux;
+    }
+    
     @Override
     public Item getSeed(){
     	return this.seed;

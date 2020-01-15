@@ -7,6 +7,8 @@ import com.focamacho.mysticalcreations.MysticalCreations;
 import com.focamacho.mysticalcreations.config.ModConfig;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
@@ -42,11 +44,16 @@ public class CustomSeeds {
 				MysticalCreations.logger.error("Skipping line: " + config);
 				continue;
 			}
-			Block crux;
+			ItemStack crux;
 			if(!split[3].contains("null")) {
 				try {
-					crux = Block.getBlockFromName(split[3]);
-					if(crux == null) {
+					String[] splitCrux = split[3].split(":");
+					if(splitCrux.length > 2) {
+						crux = new ItemStack(Block.getBlockFromName(splitCrux[0] + ":" + splitCrux[1]), 1, Integer.parseInt(splitCrux[2]));
+					} else {
+						crux = new ItemStack(Block.getBlockFromName(splitCrux[0] + ":" + splitCrux[1]), 1, 0);
+					}
+					if(crux == null || crux.getItem() == Items.AIR) {
 						MysticalCreations.logger.error("Invalid Config! Invalid Crux!");
 						MysticalCreations.logger.error("Skipping line: " + config);
 						continue;

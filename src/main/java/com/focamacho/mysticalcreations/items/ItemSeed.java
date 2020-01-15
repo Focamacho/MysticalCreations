@@ -28,14 +28,12 @@ public class ItemSeed extends ItemSeeds implements IHasModel {
 	private int tier;
 	private Block crops;
 	private String name;
-	private Block soil;
 	
-	public ItemSeed(String name, BlockCrop crop, int tier, int color, Block soil) {
+	public ItemSeed(String name, BlockCrop crop, int tier, int color) {
 		super(crop, Blocks.FARMLAND);
 		this.setUnlocalizedName(name + "_seeds");
 		this.setRegistryName(name + "_seeds");
 		this.setCreativeTab(MysticalAgriculture.CREATIVE_TAB);
-		this.soil = soil;
 		this.crops = crop;
 		this.tier = tier;
 		this.color = color;

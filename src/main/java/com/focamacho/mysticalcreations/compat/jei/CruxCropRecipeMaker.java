@@ -17,7 +17,7 @@ public class CruxCropRecipeMaker {
 			if (seed.getCrux() != null) {
 				ItemStack input = new ItemStack(seed.getSeed());
 				ItemStack crop = new ItemStack(seed.getItemCrop());
-				ItemStack crux = new ItemStack(seed.getCrux());
+				ItemStack crux = seed.getCrux();
 				ItemStack output = new ItemStack(seed.getEssence());
 
 				recipes.add(new CruxCropWrapper(input, crop, crux, output));

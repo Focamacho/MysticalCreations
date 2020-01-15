@@ -11,6 +11,7 @@ import com.focamacho.mysticalcreations.items.ItemSeed;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 
 public class CustomSeed {
@@ -22,14 +23,14 @@ public class CustomSeed {
 	private String name;
 	private int tier;
 	private int color;
-	private Block crux;
+	private ItemStack crux;
 	private ItemChunk chunk;
 	private EntityEntry entity;
 	
-	public CustomSeed(String name, Integer tier, Integer color, @Nullable Block crux, @Nullable EntityEntry entity) {
+	public CustomSeed(String name, Integer tier, Integer color, @Nullable ItemStack crux, @Nullable EntityEntry entity) {
 		BlockCrop crop = new BlockCrop(name, crux, tier);
 		ItemEssence essence = new ItemEssence(name, color);
-		ItemSeed seed = new ItemSeed(name, crop, tier, color, crux);
+		ItemSeed seed = new ItemSeed(name, crop, tier, color);
 		ItemChunk chunk = new ItemChunk(name, tier, color);
 		crop.setSeed(seed);
 		crop.setEssence(essence);
@@ -83,8 +84,8 @@ public class CustomSeed {
 	public String getName() {
 		return this.name;
 	}
-
-	public Block getCrux() {
+	
+	public ItemStack getCrux() {
 		return this.crux;
 	}
 	
