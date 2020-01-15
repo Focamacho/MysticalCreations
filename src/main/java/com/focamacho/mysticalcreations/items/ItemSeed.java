@@ -51,40 +51,19 @@ public class ItemSeed extends ItemSeeds implements IHasModel {
 	private int tier;
 	private Block crops;
 	private String name;
+	private Block soil;
 	
-	public ItemSeed(String name, BlockCrop crop, int tier, int color) {
+	public ItemSeed(String name, BlockCrop crop, int tier, int color, Block soil) {
 		super(crop, Blocks.FARMLAND);
 		this.setUnlocalizedName(name + "_seeds");
 		this.setRegistryName(name + "_seeds");
 		this.setCreativeTab(MysticalAgriculture.CREATIVE_TAB);
+		this.soil = soil;
 		this.crops = crop;
 		this.tier = tier;
 		this.color = color;
 		this.name = name;
 	}
-	
-	@Override
-	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-    {
-        ItemStack itemstack = player.getHeldItem(hand);
-        IBlockState state = worldIn.getBlockState(pos);
-        if (facing == EnumFacing.UP && player.canPlayerEdit(pos.offset(facing), facing, itemstack) && state.getBlock().canSustainPlant(state, worldIn, pos, EnumFacing.UP, this) && worldIn.isAirBlock(pos.up()))
-        {
-            worldIn.setBlockState(pos.up(), this.crops.getDefaultState());
-
-            if (player instanceof EntityPlayerMP)
-            {
-                CriteriaTriggers.PLACED_BLOCK.trigger((EntityPlayerMP)player, pos.up(), itemstack);
-            }
-
-            itemstack.shrink(1);
-            return EnumActionResult.SUCCESS;
-        }
-        else
-        {
-            return EnumActionResult.FAIL;
-        }
-    }
 		
 	@Override
     @SideOnly(Side.CLIENT)
@@ -114,6 +93,7 @@ public class ItemSeed extends ItemSeeds implements IHasModel {
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
 		String nameFinal = "";
+		nameFinal += I18n.translateToLocal("tile.mysticalcreations.seeds.name.before");
 		String[] name = this.name.split("_");
 		if(name.length > 1) {
 			for(String string : name) {

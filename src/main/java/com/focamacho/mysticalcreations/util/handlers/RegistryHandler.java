@@ -23,9 +23,11 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.IStateMapper;
 import net.minecraft.client.renderer.block.statemap.StateMap;
+import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemMultiTexture.Mapper;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
@@ -73,6 +75,9 @@ public class RegistryHandler {
 		for(CustomSeed seed : CustomSeeds.allSeeds) {
 			MysticalCreations.proxy.registerItemColorHandler(seed.getSeed(), seed.getColor(), 0);
 			MysticalCreations.proxy.registerItemColorHandler(seed.getEssence(), seed.getColor(), 0);
+			MysticalCreations.proxy.registerItemColorHandler(seed.getItemCrop(), seed.getColor(), 1);
+			MysticalCreations.proxy.registerBlockColorHandler(seed);
+			if(seed.getChunk() != null) MysticalCreations.proxy.registerItemColorHandler(seed.getChunk(), seed.getColor(), 0);
 		}
 	}
 	

@@ -17,7 +17,10 @@ public class ItemColorHandler implements IItemColor {
 	
 	@Override
 	public int colorMultiplier(ItemStack stack, int tintIndex) {
-		return this.color;
+		if(tintIndex == this.tintIndex) {
+			return this.color;
+		}
+		return -1;
 	}
 
 }

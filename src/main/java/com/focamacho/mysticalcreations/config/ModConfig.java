@@ -32,8 +32,20 @@ public class ModConfig {
 		String category;
 		
 		category = "Custom Seeds";
-		config.addCustomCategoryComment(category, "Custom seeds creator");
-		CUSTOM_SEED_LIST = config.get(category, "CUSTOM_SEED_LIST", new String[] {"base,1,FF8F00", "foda,2,f70202", "brabo,3,00fbff", "tenso,4,c602ed", "indignado,5,00ff0d", "brabissimo,6,eeff00"}).getStringList();
+		config.addCustomCategoryComment(category, "Here you can create your own seeds. It generates for you the Seed, Essence, Crop and Mob Chunk.\n"
+												+ "For making the recipes you'll need to use CraftTweaker!\n"
+												+ "- Syntax: name;tier;color;crux;entity\n"
+												+ "- 'name' should be lower case with underscores for spaces.\n"
+												+ "- 'tier' should be 1, 2, 3, 4, 5 or 6.\n"
+												+ "- 'color' the color of the singularity as a hex value. http://htmlcolorcodes.com/\n"
+												+ "- 'crux' can be any block, leave this as null if you don't want to use crux\n"
+												+ "Example: minecraft:diamond_block\n"
+												+ "- 'entity' can be any entity, leave this as null if you don't want mob chunks\n"
+												+ "Example: minecraft:pig\n"
+												+ "\n"
+												+ "Example for Cake Seeds:\n"
+												+ "cake;2;724C1B;null;null");
+		CUSTOM_SEED_LIST = config.get(category, "CUSTOM_SEED_LIST", new String[] {"cake;2;724C1B;null;null","witch;4;2E0365;null;minecraft:witch"}).getStringList();
 		
 		if(config.hasChanged()){
 			config.save();

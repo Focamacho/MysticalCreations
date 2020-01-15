@@ -3,6 +3,10 @@ package com.focamacho.mysticalcreations.blocks;
 import java.util.Map;
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
+import org.apache.commons.lang3.StringEscapeUtils;
+
 import com.blakebr0.cucumber.util.Utils;
 import com.blakebr0.mysticalagriculture.config.ModConfig;
 import com.blakebr0.mysticalagriculture.items.ModItems;
@@ -20,18 +24,23 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.DefaultStateMapper;
 import net.minecraft.client.renderer.block.statemap.IStateMapper;
+import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemMultiTexture.Mapper;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.EnumPlantType;
+import net.minecraftforge.common.IPlantable;
 
 public class BlockCrop extends BlockCrops implements IHasModel {
 	
@@ -39,14 +48,34 @@ public class BlockCrop extends BlockCrops implements IHasModel {
     private Item seed;
     private Item crop;
     private Item essence;
+    private String name;
+    private Block crux;
     
-    public BlockCrop(String name){
+    public BlockCrop(String name, @Nullable Block crux){
 		this.setUnlocalizedName(name + "_crop");
 		this.setRegistryName(name + "_crop");
         this.setCreativeTab((CreativeTabs)null);
         this.setHardness(0.0F);
         this.setSoundType(SoundType.PLANT);
         this.disableStats();
+        this.crux = crux;
+        this.name = name;
+    }
+    
+    @Override
+    public String getLocalizedName() {
+    	String nameFinal = "";
+    	nameFinal += I18n.translateToLocal("tile.mysticalcreations.crop.name.before");
+		String[] name = this.name.split("_");
+		if(name.length > 1) {
+			for(String string : name) {
+				nameFinal += string.substring(0, 1).toUpperCase() + string.substring(1) + " ";
+			}
+		} else {
+			nameFinal = name[0].substring(0, 1).toUpperCase() + name[0].substring(1) + " ";
+		}
+		nameFinal += I18n.translateToLocal("tile.mysticalcreations.crop.name");
+		return nameFinal;
     }
     
     @Override
@@ -63,15 +92,22 @@ public class BlockCrop extends BlockCrops implements IHasModel {
         }
     }
     
-    @Override
-	protected boolean canSustainBush(IBlockState state){
-		return state.getBlock() == Blocks.FARMLAND;
-	}
+    public ItemCrop getItemCrop() {
+    	return new ItemCrop(this, this.name);
+    }
 
 	@Override
     public boolean canUseBonemeal(World world, Random rand, BlockPos pos, IBlockState state){
         return true;
     }
+	
+	@Override
+	public void grow(World world, Random rand, BlockPos pos, IBlockState state) {
+		if (this.crux != null && world.getBlockState(pos.down(2)) != this.crux)
+			return;
+		
+		super.grow(world, rand, pos, state);
+	}
 	
     @Override
     public EnumPlantType getPlantType(IBlockAccess world, BlockPos pos) {
@@ -159,6 +195,44 @@ public class BlockCrop extends BlockCrops implements IHasModel {
 	
 	@Override
 	public void registerModels() {
-		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), 0, new ModelResourceLocation("mysticalcreations:base_crop", "inventory"));
+		ModelLoader.setCustomStateMapper(this, new StateMapperBase() {
+			@Override
+				protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
+				return new ModelResourceLocation("mysticalcreations:base_crop", "age=" + state.getValue(BlockCrop.AGE));
+	         	}
+		});
+	}
+	
+	class ItemCrop extends ItemBlock implements IHasModel {
+
+		private String name;
+		
+		public ItemCrop(Block block, String name) {
+			super(block);
+			this.setCreativeTab((CreativeTabs)null);
+			this.setRegistryName(name + "_crop");
+			this.name = name;
+		}
+		
+		@Override
+		public String getItemStackDisplayName(ItemStack stack) {
+			String nameFinal = "";
+			String[] name = this.name.split("_");
+			if(name.length > 1) {
+				for(String string : name) {
+					nameFinal += string.substring(0, 1).toUpperCase() + string.substring(1) + " ";
+				}
+			} else {
+				nameFinal = name[0].substring(0, 1).toUpperCase() + name[0].substring(1) + " ";
+			}
+			nameFinal += I18n.translateToLocal("tile.mysticalcreations.crop.name");
+			return nameFinal;
+		}
+
+		@Override
+		public void registerModels() {
+			ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation("mysticalcreations:base_crop", "inventory"));
+		}
+		
 	}
 }

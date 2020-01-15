@@ -13,11 +13,13 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import org.apache.logging.log4j.Logger;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION, dependencies = Reference.DEPENDENCIES)
 public class MysticalCreations {
 
 	public static File config;
+	public static Logger logger;
 	
 	@Instance
 	public static MysticalCreations instance;
@@ -27,6 +29,7 @@ public class MysticalCreations {
 	
 	@EventHandler
 	public static void PreInit(FMLPreInitializationEvent event) {
+		logger = event.getModLog();
 		RegistryHandler.preInitRegistries(event);
 	}
 
