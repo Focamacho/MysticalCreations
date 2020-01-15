@@ -27,7 +27,7 @@ public class CustomSeed {
 	private EntityEntry entity;
 	
 	public CustomSeed(String name, Integer tier, Integer color, @Nullable Block crux, @Nullable EntityEntry entity) {
-		BlockCrop crop = new BlockCrop(name, crux);
+		BlockCrop crop = new BlockCrop(name, crux, tier);
 		ItemEssence essence = new ItemEssence(name, color);
 		ItemSeed seed = new ItemSeed(name, crop, tier, color, crux);
 		ItemChunk chunk = new ItemChunk(name, tier, color);

@@ -36,8 +36,9 @@ public class BlockCrop extends BlockCrops implements IHasModel {
     private Item essence;
     private String name;
     private Block crux;
+    private int tier;
     
-    public BlockCrop(String name, @Nullable Block crux){
+    public BlockCrop(String name, @Nullable Block crux, int tier){
 		this.setUnlocalizedName(name + "_crop");
 		this.setRegistryName(name + "_crop");
         this.setCreativeTab((CreativeTabs)null);
@@ -46,6 +47,7 @@ public class BlockCrop extends BlockCrops implements IHasModel {
         this.disableStats();
         this.crux = crux;
         this.name = name;
+        this.tier = tier;
     }
     
     @Override
@@ -138,18 +140,20 @@ public class BlockCrop extends BlockCrops implements IHasModel {
         int essence = 0;
         int fertilizer = 0;
         int seeds = 1;
-
-        if(age == 7){
-        	if(ModConfig.confSeedChance > 0){
-        		if(rand.nextInt(100 / ModConfig.confSeedChance) > 0){
-        			seeds = 1;	
-        		} else {
-        			seeds = 2;
-        		}
-        	}
-        	else {
-        		seeds = 1;
-        	}
+        
+        if(this.tier != 6) {
+	        if(age == 7){
+	        	if(ModConfig.confSeedChance > 0){
+	        		if(rand.nextInt(100 / ModConfig.confSeedChance) > 0){
+	        			seeds = 1;	
+	        		} else {
+	        			seeds = 2;
+	        		}
+	        	}
+	        	else {
+	        		seeds = 1;
+	        	}
+	        }
         }
         
         if(age == 7){
