@@ -17,6 +17,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -55,6 +56,7 @@ public class RegistryHandler {
 	}
 	
 	public static void initRegistries(FMLInitializationEvent event) {
+		FMLInterModComms.sendMessage("waila", "register", "com.focamacho.mysticalcreations.compat.waila.WailaDataProvider.callbackRegister");
 		for(CustomSeed seed : CustomSeeds.allSeeds) {
 			MysticalCreations.proxy.registerItemColorHandler(seed.getSeed(), seed.getColor(), 0);
 			MysticalCreations.proxy.registerItemColorHandler(seed.getEssence(), seed.getColor(), 0);
