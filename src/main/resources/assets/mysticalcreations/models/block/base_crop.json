@@ -1,0 +1,7 @@
+{
+    "parent": "block/cross",
+    "textures": {
+        "cross": "mysticalcreations:blocks/base_crop",
+        "overlay": "mysticalcreations:block/base_crop_2"
+    }
+}

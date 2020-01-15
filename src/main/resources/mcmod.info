@@ -1,14 +1,14 @@
 [
 {
-  "modid": "examplemod",
-  "name": "Example Mod",
-  "description": "Example placeholder mod.",
+  "modid": "mysticalcreations",
+  "name": "Mystical Creations",
+  "description": "Custom Mystical Agriculture seeds!",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
-  "authorList": ["ExampleDude"],
-  "credits": "The Forge and FML guys, for making this example",
+  "authorList": ["Focamacho"],
+  "credits": "BlakeBr0 for Mystical Agriculture",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []
