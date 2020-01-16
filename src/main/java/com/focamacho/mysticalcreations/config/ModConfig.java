@@ -14,6 +14,7 @@ public class ModConfig {
 	public static ModConfig instance;
 	
 	public static String[] CUSTOM_SEED_LIST;
+	public static boolean IMMERSIVE_CLOCHE;
 	
 	@SubscribeEvent
     public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) {
@@ -46,6 +47,9 @@ public class ModConfig {
 												+ "Example for Cake Seeds:\n"
 												+ "cake;2;724C1B;null;null");
 		CUSTOM_SEED_LIST = config.get(category, "CUSTOM_SEED_LIST", new String[] {"cake;2;724C1B;null;null","witch;4;2E0365;null;minecraft:witch"}).getStringList();
+		
+		category = "Compat";
+		IMMERSIVE_CLOCHE = config.getBoolean("IMMERSIVE_CLOCHE", category, true, "Immersive Engineering Garden Cloche Compat");
 		
 		if(config.hasChanged()){
 			config.save();

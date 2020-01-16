@@ -3,6 +3,7 @@ package com.focamacho.mysticalcreations.util.handlers;
 import java.io.File;
 
 import com.focamacho.mysticalcreations.MysticalCreations;
+import com.focamacho.mysticalcreations.compat.immersiveengineering.CompatImmersive;
 import com.focamacho.mysticalcreations.config.ModConfig;
 import com.focamacho.mysticalcreations.init.ModBlocks;
 import com.focamacho.mysticalcreations.init.ModItems;
@@ -15,6 +16,7 @@ import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
@@ -56,6 +58,7 @@ public class RegistryHandler {
 	}
 	
 	public static void initRegistries(FMLInitializationEvent event) {
+		if(Loader.isModLoaded("immersiveengineering") && ModConfig.IMMERSIVE_CLOCHE) CompatImmersive.init();
 		FMLInterModComms.sendMessage("waila", "register", "com.focamacho.mysticalcreations.compat.waila.WailaDataProvider.callbackRegister");
 		for(CustomSeed seed : CustomSeeds.allSeeds) {
 			MysticalCreations.proxy.registerItemColorHandler(seed.getSeed(), seed.getColor(), 0);
