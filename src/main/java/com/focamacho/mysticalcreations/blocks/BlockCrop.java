@@ -7,14 +7,13 @@ import javax.annotation.Nullable;
 import com.blakebr0.cucumber.util.Utils;
 import com.blakebr0.mysticalagriculture.config.ModConfig;
 import com.blakebr0.mysticalagriculture.items.ModItems;
+import com.focamacho.mysticalcreations.MysticalCreations;
 import com.focamacho.mysticalcreations.util.IHasModel;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -25,7 +24,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.EnumPlantType;
 
 public class BlockCrop extends BlockCrops implements IHasModel {
@@ -198,12 +196,7 @@ public class BlockCrop extends BlockCrops implements IHasModel {
 	
 	@Override
 	public void registerModels() {
-		ModelLoader.setCustomStateMapper(this, new StateMapperBase() {
-			@Override
-				protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
-				return new ModelResourceLocation("mysticalcreations:base_crop", "age=" + state.getValue(BlockCrop.AGE));
-	         	}
-		});
+		MysticalCreations.proxy.setCropResourceLocation(this);
 	}
 	
 	class ItemCrop extends ItemBlock implements IHasModel {
@@ -235,7 +228,7 @@ public class BlockCrop extends BlockCrops implements IHasModel {
 
 		@Override
 		public void registerModels() {
-			ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation("mysticalcreations:base_crop", "inventory"));
+			MysticalCreations.proxy.setItemResourceLocation(this, "mysticalcreations:base_crop");
 		}
 		
 	}

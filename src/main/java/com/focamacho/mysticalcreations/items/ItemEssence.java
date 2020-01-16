@@ -1,13 +1,12 @@
 package com.focamacho.mysticalcreations.items;
 
 import com.blakebr0.mysticalagriculture.MysticalAgriculture;
+import com.focamacho.mysticalcreations.MysticalCreations;
 import com.focamacho.mysticalcreations.util.IHasModel;
 
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.translation.I18n;
-import net.minecraftforge.client.model.ModelLoader;
 
 public class ItemEssence extends Item implements IHasModel {
 	
@@ -40,7 +39,7 @@ public class ItemEssence extends Item implements IHasModel {
 	
 	@Override
 	public void registerModels() {
-		ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation("mysticalcreations:base_essence", "inventory"));
+		MysticalCreations.proxy.setItemResourceLocation(this, "mysticalcreations:base_essence");
 	}
 
 }

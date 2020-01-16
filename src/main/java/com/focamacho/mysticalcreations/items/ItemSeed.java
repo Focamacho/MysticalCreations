@@ -7,18 +7,17 @@ import javax.annotation.Nullable;
 import com.blakebr0.cucumber.lib.Colors;
 import com.blakebr0.mysticalagriculture.MysticalAgriculture;
 import com.blakebr0.mysticalagriculture.lib.Tooltips;
+import com.focamacho.mysticalcreations.MysticalCreations;
 import com.focamacho.mysticalcreations.blocks.BlockCrop;
 import com.focamacho.mysticalcreations.util.IHasModel;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -83,7 +82,7 @@ public class ItemSeed extends ItemSeeds implements IHasModel {
 	
 	@Override
 	public void registerModels() {
-		ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation("mysticalcreations:base_seeds", "inventory"));
+		MysticalCreations.proxy.setItemResourceLocation(this, "mysticalcreations:base_seeds");
 	}
 
 }

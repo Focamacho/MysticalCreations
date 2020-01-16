@@ -2,6 +2,7 @@ package com.focamacho.mysticalcreations.proxy;
 
 import com.focamacho.mysticalcreations.lib.CustomSeed;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 
 public class CommonProxy {
@@ -17,4 +18,13 @@ public class CommonProxy {
 	public void registerBlockColorHandler(CustomSeed seed) {
 	
 	}
+	
+	public void setCropResourceLocation(Block block) {
+
+	}
+	
+	public void setItemResourceLocation(Item item, String location) {
+		
+	}
+	
 }
