@@ -1,2 +1,2 @@
 # MysticalCreations
-just a idea...
+Create Custom Seeds for Mystical Agriculture!
