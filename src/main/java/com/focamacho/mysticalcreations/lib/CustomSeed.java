@@ -9,7 +9,6 @@ import com.focamacho.mysticalcreations.items.ItemChunk;
 import com.focamacho.mysticalcreations.items.ItemEssence;
 import com.focamacho.mysticalcreations.items.ItemSeed;
 
-import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.EntityEntry;

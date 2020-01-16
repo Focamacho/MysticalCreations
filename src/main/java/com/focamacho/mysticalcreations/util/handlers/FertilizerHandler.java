@@ -4,7 +4,6 @@ import com.blakebr0.mysticalagradditions.lib.MAHelper;
 import com.focamacho.mysticalcreations.blocks.BlockCrop;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockCrops;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemDye;

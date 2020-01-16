@@ -1,8 +1,5 @@
 package com.focamacho.mysticalcreations.util;
 
-import com.blakebr0.cucumber.lib.Colors;
-import com.blakebr0.mysticalagriculture.lib.Tooltips;
-
 import net.minecraft.util.text.TextFormatting;
 
 public class Utils {
