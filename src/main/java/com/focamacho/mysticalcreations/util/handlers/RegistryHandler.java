@@ -2,6 +2,7 @@ package com.focamacho.mysticalcreations.util.handlers;
 
 import java.io.File;
 
+import com.blakebr0.mysticalagriculture.crafting.ReprocessorManager;
 import com.focamacho.mysticalcreations.MysticalCreations;
 import com.focamacho.mysticalcreations.compat.immersiveengineering.CompatImmersive;
 import com.focamacho.mysticalcreations.config.ModConfig;
@@ -13,6 +14,7 @@ import com.focamacho.mysticalcreations.util.IHasModel;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
@@ -66,6 +68,11 @@ public class RegistryHandler {
 			MysticalCreations.proxy.registerItemColorHandler(seed.getItemCrop(), seed.getColor(), 1);
 			MysticalCreations.proxy.registerBlockColorHandler(seed);
 			if(seed.getChunk() != null) MysticalCreations.proxy.registerItemColorHandler(seed.getChunk(), seed.getColor(), 0);
+			
+			//Reprocessor Recipes
+			if(com.blakebr0.mysticalagriculture.config.ModConfig.confSeedReprocessor) {
+				ReprocessorManager.addRecipe(new ItemStack(seed.getEssence(), 2), new ItemStack(seed.getSeed()));
+			}
 		}
 		MinecraftForge.EVENT_BUS.register(new MobDropsHandler());
 		if(com.blakebr0.mysticalagriculture.config.ModConfig.confMysticalFertilizer) MinecraftForge.EVENT_BUS.register(new FertilizerHandler());
