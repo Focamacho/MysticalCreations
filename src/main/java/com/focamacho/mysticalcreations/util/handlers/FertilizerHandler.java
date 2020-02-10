@@ -1,6 +1,6 @@
 package com.focamacho.mysticalcreations.util.handlers;
 
-import com.blakebr0.mysticalagradditions.lib.MAHelper;
+import com.blakebr0.mysticalagriculture.items.ModItems;
 import com.focamacho.mysticalcreations.blocks.BlockCrop;
 
 import net.minecraft.block.Block;
@@ -15,11 +15,12 @@ public class FertilizerHandler {
 
 	@SubscribeEvent
 	public void onRightClickCrop(RightClickBlock event) {
+		System.out.println(event.getWorld().getBlockState(event.getPos()).getBlock().getClass());
 		if(event.getEntityPlayer() == null) return;
 		Block block = event.getWorld().getBlockState(event.getPos()).getBlock();
 		if(block instanceof BlockCrop) {
 			ItemStack item = event.getItemStack();
-			if(item.getItem().equals(MAHelper.items.itemMysticalFertilizer)) {
+			if(item.getItem().equals(ModItems.itemMysticalFertilizer)) {
 				BlockCrop crop = (BlockCrop) block;
 				IBlockState state = event.getWorld().getBlockState(event.getPos());
 

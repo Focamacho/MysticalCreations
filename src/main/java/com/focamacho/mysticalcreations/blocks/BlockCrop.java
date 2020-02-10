@@ -46,6 +46,7 @@ public class BlockCrop extends BlockCrops implements IHasModel {
         this.crux = crux;
         this.name = name;
         this.tier = tier;
+        this.crop = new ItemCrop(this, this.name);
     }
     
     @Override
@@ -115,9 +116,8 @@ public class BlockCrop extends BlockCrops implements IHasModel {
         return CROPS_AABB;
     }
         
-    public BlockCrop setSeed(Item seed){
+    public void setSeed(Item seed){
     	this.seed = seed;
-    	return this;
     }
 
     public ItemStack getCrux() {
@@ -129,19 +129,18 @@ public class BlockCrop extends BlockCrops implements IHasModel {
     	return this.seed;
     }
     
-    public BlockCrop setEssence(Item essence){
+    public void setEssence(Item essence){
     	this.essence = essence;
-    	return this;
-    }
-    
-    public BlockCrop setCrop(Item crop){
-    	this.crop = crop;
-    	return this;
     }
     
     @Override
     public Item getCrop() {
     	return this.crop;
+    }
+    
+    @Override
+    public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+        return this.isMaxAge(state) ? this.crop : this.seed;
     }
     
     @Override

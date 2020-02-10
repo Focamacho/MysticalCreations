@@ -43,5 +43,5 @@ public class MysticalCreations {
 	public static void PostInit(FMLPostInitializationEvent event) {
 		RegistryHandler.postInitRegistries(event);
 	}
-	
+
 }
