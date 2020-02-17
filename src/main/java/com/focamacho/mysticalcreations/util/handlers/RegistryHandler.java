@@ -5,6 +5,7 @@ import java.io.File;
 import com.blakebr0.mysticalagriculture.crafting.ReprocessorManager;
 import com.focamacho.mysticalcreations.MysticalCreations;
 import com.focamacho.mysticalcreations.compat.immersiveengineering.CompatImmersive;
+import com.focamacho.mysticalcreations.compat.mysticalagradditions.CompatMysticalAgradditions;
 import com.focamacho.mysticalcreations.config.ModConfig;
 import com.focamacho.mysticalcreations.init.ModBlocks;
 import com.focamacho.mysticalcreations.init.ModItems;
@@ -75,6 +76,7 @@ public class RegistryHandler {
 			}
 		}
 		MinecraftForge.EVENT_BUS.register(new MobDropsHandler());
+		if(Loader.isModLoaded("mysticalagradditions")) CompatMysticalAgradditions.init();
 		if(com.blakebr0.mysticalagriculture.config.ModConfig.confMysticalFertilizer) MinecraftForge.EVENT_BUS.register(new FertilizerHandler());
 	}
 	
