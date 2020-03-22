@@ -37,7 +37,7 @@ public class ConfigMysticalCreations {
             //Check if the config file contains all keys
             if(toml.getList("mysticalcreations.seeds") == null) {
                 seeds.mysticalcreations.put("_comment", new String[]{"Check the wiki to learn how to create your seeds! https://github.com/Focamacho/MysticalCreations/wiki"});
-                seeds.mysticalcreations.put("seeds", new String[]{"cake;3;RESOURCE;DUST;DIAMOND;D303FC", "witch;4;MOB;FACE;FLAME;FF0324"});
+                seeds.mysticalcreations.put("seeds", new String[]{"cake;3;RESOURCE;INGOT;ROCK;45230E", "example;5;MOB;FACE;FLAME;FF0324"});
                 writer.write(seeds, configFile);
                 toml = new Toml().read(configFile);
             }
