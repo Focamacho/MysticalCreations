@@ -11,3 +11,15 @@ authors="Focamacho"
 description='''
 Create custom Mystical Agriculture seeds!
 '''
+[[dependencies.mysticalcreations]]
+    modId="mysticalagriculture"
+    mandatory=true
+    versionRange="[2,]"
+    ordering="BEFORE"
+    side="BOTH"
+[[dependencies.mysticalcreations]]
+    modId="mysticalagradditions"
+    mandatory=false
+    versionRange="[2,]"
+    ordering="BEFORE"
+    side="BOTH"
