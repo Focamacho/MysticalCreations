@@ -6,11 +6,13 @@ buildscript {
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+        classpath 'com.github.jengelman.gradle.plugins:shadow:4.0.4'
     }
 }
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
+apply plugin: 'com.github.johnrengelman.shadow'
 
 version = '1.0'
 group = 'com.focamacho.mysticalcreations'
@@ -83,8 +85,7 @@ repositories {
 
 dependencies {
     minecraft 'net.minecraftforge:forge:1.14.4-28.2.3'
-	
-	implementation files("libs/toml4j-0.7.2.jar")
+	shadow files("libs/toml4j-0.7.2.jar")
 
     // Cucumber
     compileOnly files("libs/Cucumber-1.14.4-2.0.6.jar")
@@ -101,6 +102,17 @@ dependencies {
     // JEI
     compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api")
     runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
+}
+
+shadowJar {
+    project.configurations.shadow.setTransitive(true);
+    configurations = [project.configurations.shadow]
+
+    classifier ''
+}
+
+reobf {
+    shadowJar {}
 }
 
 def reobfFile = file("$buildDir/reobfJar/output.jar")

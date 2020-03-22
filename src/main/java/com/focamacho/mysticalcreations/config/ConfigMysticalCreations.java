@@ -1,8 +1,11 @@
 package com.focamacho.mysticalcreations.config;
 
+import com.focamacho.mysticalcreations.MysticalCreations;
 import com.moandjiezana.toml.Toml;
 import com.moandjiezana.toml.TomlWriter;
 import net.minecraft.client.Minecraft;
+import net.minecraft.server.MinecraftServer;
+import net.minecraftforge.fml.loading.FMLPaths;
 
 import java.io.File;
 import java.util.HashMap;
@@ -24,23 +27,19 @@ public class ConfigMysticalCreations {
     public static void initConfigs(){
         try {
             //Get the config file from configs folder
-            File configFile = new File(Minecraft.getInstance().gameDir.getAbsolutePath() + "/config", "mysticalcreations-seeds.toml");
+            File configFile = new File(FMLPaths.CONFIGDIR.get().toString(), "mysticalcreations-seeds.toml");
 
             //Create the config file and write comments
             if(!configFile.exists()) {
                 configFile.createNewFile();
-            }
-
-            //Read the config file to TOML
-            toml = new Toml().read(configFile);
-
-            //Check if the config file contains all keys
-            if(toml.getList("mysticalcreations.seeds") == null) {
                 seeds.mysticalcreations.put("_comment", new String[]{"Check the wiki to learn how to create your seeds! https://github.com/Focamacho/MysticalCreations/wiki"});
                 seeds.mysticalcreations.put("seeds", new String[]{"cake;3;RESOURCE;INGOT;ROCK;45230E;null", "example;5;MOB;FACE;FLAME;FF0324;minecraft:diamond_block"});
                 writer.write(seeds, configFile);
                 toml = new Toml().read(configFile);
             }
+
+            //Read the config file to TOML
+            toml = new Toml().read(configFile);
 
             allSeeds = toml.getList("mysticalcreations.seeds");
 
