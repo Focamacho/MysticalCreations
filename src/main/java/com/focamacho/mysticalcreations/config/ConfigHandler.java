@@ -35,7 +35,7 @@ public class ConfigHandler {
     private static Crop getCrop(String config){
         String[] split = config.split(";");
         try {
-            if (split.length == 6) {
+            if (split.length == 7) {
                 ResourceLocation id = new ResourceLocation(MysticalCreations.MOD_ID, split[0]);
                 CropTier tier = getTierFromNumber(Integer.parseInt(split[1]));
                 CropType type = getTypeFromString(split[2]);
@@ -43,17 +43,29 @@ public class ConfigHandler {
                 int color = Integer.parseInt(split[5], 16);
                 LazyIngredient craftingMaterial = LazyIngredient.EMPTY;
 
-                if(tier != null && type != null && textures != null && craftingMaterial != null){
-                    return new Crop(id, tier, type, textures, color, craftingMaterial);
-                } else {
-                    MysticalCreations.LOGGER.error("Config file error. Check the line +\"" + config + "\"");
+                if(tier == null){
+                    MysticalCreations.LOGGER.error("Config file error. Invalid tier. Check the line \"" + config + "\"");
+                    return null;
                 }
 
+                if(type == null){
+                    MysticalCreations.LOGGER.error("Config file error. Invalid type. Check the line \"" + config + "\"");
+                    return null;
+                }
+
+                if(textures == null){
+                    MysticalCreations.LOGGER.error("Config file error. Invalid textures. Check the line \"" + config + "\"");
+                    return null;
+                }
+
+                Crop crop = new Crop(id, tier, type, textures, color, craftingMaterial);
+                return crop;
+
             } else {
-                MysticalCreations.LOGGER.error("Invalid arguments length. Check the line \"" + split.length + "\"");
+                MysticalCreations.LOGGER.error("Invalid arguments length. Check the line \"" + config + "\"");
             }
         } catch(Exception e) {
-            MysticalCreations.LOGGER.error("Config file error. Check the line +\"" + config + "\"");
+            MysticalCreations.LOGGER.error("Config file error. Check the line \"" + config + "\"");
         }
 
         return null;
