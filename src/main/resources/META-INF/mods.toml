@@ -1,0 +1,25 @@
+modLoader="javafml"
+loaderVersion="[31,)"
+issueTrackerURL="https://www.curseforge.com/minecraft/mc-mods/mystical-creations"
+[[mods]]
+modId="mysticalcreations"
+version="${file.jarVersion}"
+displayName="Mystical Creations"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/mystical-creations"
+credits="BlakeBr0 for Mystical Agriculture"
+authors="Focamacho"
+description='''
+Create custom Mystical Agriculture seeds!
+'''
+[[dependencies.mysticalcreations]]
+    modId="mysticalagriculture"
+    mandatory=true
+    versionRange="[3,]"
+    ordering="BEFORE"
+    side="BOTH"
+[[dependencies.mysticalcreations]]
+    modId="mysticalagradditions"
+    mandatory=false
+    versionRange="[3,]"
+    ordering="BEFORE"
+    side="BOTH"
