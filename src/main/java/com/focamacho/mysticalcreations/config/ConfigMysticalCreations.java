@@ -1,10 +1,7 @@
 package com.focamacho.mysticalcreations.config;
 
-import com.focamacho.mysticalcreations.MysticalCreations;
 import com.moandjiezana.toml.Toml;
 import com.moandjiezana.toml.TomlWriter;
-import net.minecraft.client.Minecraft;
-import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.fml.loading.FMLPaths;
 
 import java.io.File;
