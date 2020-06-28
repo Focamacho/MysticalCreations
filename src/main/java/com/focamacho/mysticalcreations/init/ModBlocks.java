@@ -1,9 +1,9 @@
 package com.focamacho.mysticalcreations.init;
 
+import net.minecraft.block.Block;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import net.minecraft.block.Block;
 
 public class ModBlocks {
 

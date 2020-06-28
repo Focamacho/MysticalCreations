@@ -1,7 +1,6 @@
 package com.focamacho.mysticalcreations.proxy;
 
 import com.focamacho.mysticalcreations.lib.CustomSeed;
-
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 

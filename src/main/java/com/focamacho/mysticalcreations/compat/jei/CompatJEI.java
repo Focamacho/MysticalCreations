@@ -1,12 +1,7 @@
 package com.focamacho.mysticalcreations.compat.jei;
 
 import com.blakebr0.mysticalagriculture.items.ModItems;
-
-import mezz.jei.api.IGuiHelper;
-import mezz.jei.api.IJeiHelpers;
-import mezz.jei.api.IModPlugin;
-import mezz.jei.api.IModRegistry;
-import mezz.jei.api.JEIPlugin;
+import mezz.jei.api.*;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import net.minecraft.item.ItemStack;
 

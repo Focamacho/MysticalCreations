@@ -3,7 +3,6 @@ package com.focamacho.mysticalcreations.util.handlers;
 import com.blakebr0.mysticalagriculture.items.ModItems;
 import com.focamacho.mysticalcreations.blocks.BlockCrop;
 import com.focamacho.mysticalcreations.compat.mysticalagradditions.FertilizableCrops;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;

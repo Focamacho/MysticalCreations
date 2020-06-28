@@ -1,15 +1,10 @@
 package com.focamacho.mysticalcreations.blocks;
 
-import java.util.Random;
-
-import javax.annotation.Nullable;
-
 import com.blakebr0.cucumber.util.Utils;
 import com.blakebr0.mysticalagriculture.config.ModConfig;
 import com.blakebr0.mysticalagriculture.items.ModItems;
 import com.focamacho.mysticalcreations.MysticalCreations;
 import com.focamacho.mysticalcreations.util.IHasModel;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.SoundType;
@@ -25,6 +20,9 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
+
+import javax.annotation.Nullable;
+import java.util.Random;
 
 public class BlockCrop extends BlockCrops implements IHasModel {
 	

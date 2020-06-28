@@ -1,17 +1,14 @@
 package com.focamacho.mysticalcreations.lib;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.focamacho.mysticalcreations.MysticalCreations;
 import com.focamacho.mysticalcreations.config.ModConfig;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.registry.EntityEntry;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CustomSeeds {
 
@@ -71,22 +68,20 @@ public class CustomSeeds {
 			}
 		} else crux = null;
 		
-		EntityEntry entity;
+		List<ResourceLocation> entities = new ArrayList<>();
 		if(!split[4].contains("null")) {
 			try {
-				entity = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(split[4]));
-				if(entity == null) {
-					MysticalCreations.logger.error("Invalid Config! Invalid Entity!");
-					MysticalCreations.logger.error("Skipping line: " + config);
-					return;
+				String[] entitiesConfigs = split[4].split(",");
+				for(String entity : entitiesConfigs) {
+					entities.add(new ResourceLocation(entity));
 				}
 			} catch (Exception e) {
 				MysticalCreations.logger.error("Invalid Config! Invalid Entity!");
 				MysticalCreations.logger.error("Skipping line: " + config);
 				return;
 			}
-		} else entity = null;
+		} else entities = null;
 		
-		new CustomSeed(name, tier, color, crux, entity);
+		new CustomSeed(name, tier, color, crux, entities);
 	}
 }

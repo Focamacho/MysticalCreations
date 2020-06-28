@@ -1,12 +1,8 @@
 package com.focamacho.mysticalcreations.util.handlers;
 
-import java.util.List;
-import java.util.Random;
-
 import com.blakebr0.mysticalagriculture.items.ModItems;
 import com.focamacho.mysticalcreations.lib.CustomSeed;
 import com.focamacho.mysticalcreations.lib.CustomSeeds;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -14,10 +10,13 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
+
+import java.util.List;
+import java.util.Random;
 
 public class MobDropsHandler {
 
@@ -36,8 +35,8 @@ public class MobDropsHandler {
             
             if(!held.isEmpty() && held.getItem() == ModItems.itemSouliumDagger){
             	for(CustomSeed seed : CustomSeeds.chunkSeeds) {
-            		EntityEntry entity2 = seed.getEntity();
-            		if(EntityRegistry.getEntry(attacked.getClass()).equals(entity2)) {
+            		List<ResourceLocation> entities = seed.getEntities();
+            		if(entities.contains(EntityRegistry.getEntry(attacked.getClass()).getRegistryName())) {
             			drop(attacked, seed.getChunk(), 1, 0, getChanceFromTier(seed.getTier()), drops);
             		}
             	}

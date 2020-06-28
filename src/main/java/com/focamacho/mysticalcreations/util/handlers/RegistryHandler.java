@@ -1,7 +1,5 @@
 package com.focamacho.mysticalcreations.util.handlers;
 
-import java.io.File;
-
 import com.blakebr0.mysticalagriculture.crafting.ReprocessorManager;
 import com.focamacho.mysticalcreations.MysticalCreations;
 import com.focamacho.mysticalcreations.compat.immersiveengineering.CompatImmersive;
@@ -12,7 +10,6 @@ import com.focamacho.mysticalcreations.init.ModItems;
 import com.focamacho.mysticalcreations.lib.CustomSeed;
 import com.focamacho.mysticalcreations.lib.CustomSeeds;
 import com.focamacho.mysticalcreations.util.IHasModel;
-
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -26,6 +23,8 @@ import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+import java.io.File;
 
 @EventBusSubscriber
 public class RegistryHandler {

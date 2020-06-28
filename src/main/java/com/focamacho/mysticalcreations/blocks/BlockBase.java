@@ -3,7 +3,6 @@ package com.focamacho.mysticalcreations.blocks;
 import com.blakebr0.mysticalagriculture.MysticalAgriculture;
 import com.focamacho.mysticalcreations.MysticalCreations;
 import com.focamacho.mysticalcreations.util.IHasModel;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;

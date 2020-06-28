@@ -1,17 +1,16 @@
 package com.focamacho.mysticalcreations.compat.waila;
 
-import java.util.List;
-
 import com.blakebr0.mysticalagriculture.lib.Tooltips;
 import com.focamacho.mysticalcreations.blocks.BlockCrop;
 import com.focamacho.mysticalcreations.util.Utils;
-
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import mcp.mobius.waila.api.IWailaDataProvider;
 import mcp.mobius.waila.api.IWailaRegistrar;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
+
+import java.util.List;
 
 public class WailaDataProvider implements IWailaDataProvider {
 

@@ -1,17 +1,17 @@
 package com.focamacho.mysticalcreations.lib;
 
-import javax.annotation.Nullable;
-
 import com.focamacho.mysticalcreations.blocks.BlockCrop;
 import com.focamacho.mysticalcreations.init.ModBlocks;
 import com.focamacho.mysticalcreations.init.ModItems;
 import com.focamacho.mysticalcreations.items.ItemChunk;
 import com.focamacho.mysticalcreations.items.ItemEssence;
 import com.focamacho.mysticalcreations.items.ItemSeed;
-
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.registry.EntityEntry;
+import net.minecraft.util.ResourceLocation;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class CustomSeed {
 
@@ -24,9 +24,9 @@ public class CustomSeed {
 	private int color;
 	private ItemStack crux;
 	private ItemChunk chunk;
-	private EntityEntry entity;
+	private List<ResourceLocation> entities;
 	
-	public CustomSeed(String name, Integer tier, Integer color, @Nullable ItemStack crux, @Nullable EntityEntry entity) {
+	public CustomSeed(String name, Integer tier, Integer color, @Nullable ItemStack crux, @Nullable List<ResourceLocation> entities) {
 		BlockCrop crop = new BlockCrop(name, crux, tier);
 		ItemEssence essence = new ItemEssence(name, color);
 		ItemSeed seed = new ItemSeed(name, crop, tier, color);
@@ -38,17 +38,17 @@ public class CustomSeed {
 		ModItems.ITEMS.add(itemCrop);
 		ModItems.ITEMS.add(essence);
 		ModItems.ITEMS.add(seed);
-		if(entity != null) ModItems.ITEMS.add(chunk);
+		if(entities != null) ModItems.ITEMS.add(chunk);
 		this.name = name;
 		this.crop = crop;
 		this.essence = essence;
 		this.seed = seed;
 		this.tier = tier;
 		this.color = color;
-		this.entity = entity;
+		this.entities = entities;
 		if(crux != null) this.crux = crux;
 		else crux = null;
-		if(entity != null) {
+		if(entities != null) {
 			this.chunk = chunk;
 			CustomSeeds.chunkSeeds.add(this);
 		}
@@ -92,7 +92,7 @@ public class CustomSeed {
 		return this.chunk;
 	}
 	
-	public EntityEntry getEntity() {
-		return this.entity;
+	public List<ResourceLocation> getEntities() {
+		return this.entities;
 	}
 }

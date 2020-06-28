@@ -1,12 +1,11 @@
 package com.focamacho.mysticalcreations.compat.jei;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.focamacho.mysticalcreations.lib.CustomSeed;
 import com.focamacho.mysticalcreations.lib.CustomSeeds;
-
 import net.minecraft.item.ItemStack;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CruxCropRecipeMaker {
 

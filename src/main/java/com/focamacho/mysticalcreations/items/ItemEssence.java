@@ -3,7 +3,6 @@ package com.focamacho.mysticalcreations.items;
 import com.blakebr0.mysticalagriculture.MysticalAgriculture;
 import com.focamacho.mysticalcreations.MysticalCreations;
 import com.focamacho.mysticalcreations.util.IHasModel;
-
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.translation.I18n;

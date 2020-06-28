@@ -1,10 +1,7 @@
 package com.focamacho.mysticalcreations.compat.jei;
 
-import java.util.List;
-
 import com.blakebr0.cucumber.helper.ResourceHelper;
 import com.focamacho.mysticalcreations.util.Reference;
-
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IGuiItemStackGroup;
@@ -13,6 +10,8 @@ import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeCategory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.translation.I18n;
+
+import java.util.List;
 
 public class CruxCropCategory implements IRecipeCategory<CruxCropWrapper> {
 	

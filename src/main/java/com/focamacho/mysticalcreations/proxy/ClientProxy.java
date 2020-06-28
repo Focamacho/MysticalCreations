@@ -3,7 +3,6 @@ package com.focamacho.mysticalcreations.proxy;
 import com.focamacho.mysticalcreations.blocks.BlockCrop;
 import com.focamacho.mysticalcreations.lib.CustomSeed;
 import com.focamacho.mysticalcreations.util.handlers.ItemColorHandler;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;

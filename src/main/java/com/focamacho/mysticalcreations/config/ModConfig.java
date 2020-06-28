@@ -1,12 +1,11 @@
 package com.focamacho.mysticalcreations.config;
 
-import java.io.File;
-
 import com.focamacho.mysticalcreations.util.Reference;
-
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+import java.io.File;
 
 public class ModConfig {
 	
@@ -41,8 +40,9 @@ public class ModConfig {
 												+ "- 'color' the color of the seed as a hex value. http://htmlcolorcodes.com/\n"
 												+ "- 'crux' can be any block, leave this as null if you don't want to use crux\n"
 												+ "Example: minecraft:diamond_block\n"
-												+ "- 'entity' can be any entity, leave this as null if you don't want mob chunks\n"
+												+ "- 'entity' can be any entity, leave this as null if you don't want mob chunks (If you want more than one entity for the same seed, use \",\" to separate them)\n"
 												+ "Example: minecraft:pig\n"
+												+ "Example multiple entities: minecraft:pig,minecraft:witch,twilightforest:naga\n"
 												+ "\n"
 												+ "Example for Cake Seeds:\n"
 												+ "cake;2;724C1B;null;null");
