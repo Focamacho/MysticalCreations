@@ -1,22 +1,18 @@
 package com.focamacho.mysticalcreations.items;
 
 import com.blakebr0.mysticalagriculture.MysticalAgriculture;
-import com.focamacho.mysticalcreations.MysticalCreations;
-import com.focamacho.mysticalcreations.util.IHasModel;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.translation.I18n;
 
-public class ItemEssence extends Item implements IHasModel {
+public class ItemEssence extends Item {
+
+	private final String name;
 	
-	private static int color;
-	private String name;
-	
-	public ItemEssence(String name, int color) {
+	public ItemEssence(String name) {
 		this.setRegistryName(name + "_essence");
 		this.setUnlocalizedName(name + "_essence");
 		this.setCreativeTab(MysticalAgriculture.CREATIVE_TAB);
-		this.color = color;
 		this.name = name;
 	}
 	
@@ -34,11 +30,6 @@ public class ItemEssence extends Item implements IHasModel {
 		}
 		nameFinal += I18n.translateToLocal("item.mysticalcreations.essence.name");
 		return nameFinal;
-	}
-	
-	@Override
-	public void registerModels() {
-		MysticalCreations.proxy.setItemResourceLocation(this, "mysticalcreations:base_essence");
 	}
 
 }

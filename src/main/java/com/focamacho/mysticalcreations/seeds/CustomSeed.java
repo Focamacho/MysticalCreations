@@ -27,9 +27,9 @@ public class CustomSeed {
 	
 	public CustomSeed(String name, Integer tier, Integer color, @Nullable ItemStack crux, @Nullable List<ResourceLocation> entities) {
 		BlockCrop crop = new BlockCrop(name, crux, tier);
-		ItemEssence essence = new ItemEssence(name, color);
-		ItemSeed seed = new ItemSeed(name, crop, tier, color);
-		ItemChunk chunk = new ItemChunk(name, tier, color);
+		ItemEssence essence = new ItemEssence(name);
+		ItemSeed seed = new ItemSeed(name, crop, tier);
+		ItemChunk chunk = new ItemChunk(name, tier);
 
 		crop.setSeed(seed);
 		crop.setEssence(essence);

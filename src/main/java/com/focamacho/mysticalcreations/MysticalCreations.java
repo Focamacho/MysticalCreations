@@ -5,6 +5,9 @@ import com.focamacho.mysticalcreations.blocks.BlockCrop;
 import com.focamacho.mysticalcreations.compat.immersiveengineering.CompatImmersive;
 import com.focamacho.mysticalcreations.compat.mysticalagradditions.CompatMysticalAgradditions;
 import com.focamacho.mysticalcreations.config.ModConfig;
+import com.focamacho.mysticalcreations.items.ItemChunk;
+import com.focamacho.mysticalcreations.items.ItemEssence;
+import com.focamacho.mysticalcreations.items.ItemSeed;
 import com.focamacho.mysticalcreations.proxy.CommonProxy;
 import com.focamacho.mysticalcreations.seeds.CustomSeed;
 import com.focamacho.mysticalcreations.seeds.CustomSeeds;
@@ -104,6 +107,9 @@ public class MysticalCreations {
 	public static void onModelRegister(ModelRegistryEvent event) {
 		items.forEach(item -> {
 			if(item instanceof BlockCrop.ItemCrop) MysticalCreations.proxy.setItemResourceLocation(item, "mysticalcreations:base_crop");
+			else if(item instanceof ItemEssence) MysticalCreations.proxy.setItemResourceLocation(item, "mysticalcreations:base_essence");
+			else if(item instanceof ItemSeed) MysticalCreations.proxy.setItemResourceLocation(item, "mysticalcreations:base_seeds");
+			else if(item instanceof ItemChunk) MysticalCreations.proxy.setItemResourceLocation(item, "mysticalcreations:base_chunk");
 		});
 
 		blocks.forEach(block -> {

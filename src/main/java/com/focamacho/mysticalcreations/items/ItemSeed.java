@@ -3,10 +3,7 @@ package com.focamacho.mysticalcreations.items;
 import com.blakebr0.cucumber.lib.Colors;
 import com.blakebr0.mysticalagriculture.MysticalAgriculture;
 import com.blakebr0.mysticalagriculture.lib.Tooltips;
-import com.focamacho.mysticalcreations.MysticalCreations;
 import com.focamacho.mysticalcreations.blocks.BlockCrop;
-import com.focamacho.mysticalcreations.util.IHasModel;
-import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemSeeds;
@@ -19,21 +16,17 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class ItemSeed extends ItemSeeds implements IHasModel {
+public class ItemSeed extends ItemSeeds {
+
+	private final int tier;
+	private final String name;
 	
-	private static int color;
-	private int tier;
-	private Block crops;
-	private String name;
-	
-	public ItemSeed(String name, BlockCrop crop, int tier, int color) {
+	public ItemSeed(String name, BlockCrop crop, int tier) {
 		super(crop, Blocks.FARMLAND);
 		this.setUnlocalizedName(name + "_seeds");
 		this.setRegistryName(name + "_seeds");
 		this.setCreativeTab(MysticalAgriculture.CREATIVE_TAB);
-		this.crops = crop;
 		this.tier = tier;
-		this.color = color;
 		this.name = name;
 	}
 		
@@ -76,11 +69,6 @@ public class ItemSeed extends ItemSeeds implements IHasModel {
 		}
 		nameFinal += I18n.translateToLocal("item.mysticalcreations.seeds.name");
 		return nameFinal;
-	}
-	
-	@Override
-	public void registerModels() {
-		MysticalCreations.proxy.setItemResourceLocation(this, "mysticalcreations:base_seeds");
 	}
 
 }

@@ -2,8 +2,8 @@ package com.focamacho.mysticalcreations.seeds;
 
 import com.focamacho.mysticalcreations.MysticalCreations;
 import com.focamacho.mysticalcreations.config.ModConfig;
+import net.minecraft.block.Block;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
@@ -63,7 +63,7 @@ public class CustomSeeds {
 				String[] splitCrux = split[3].split(":");
 				int meta = splitCrux.length > 2 ? Integer.parseInt(splitCrux[2]) : 0;
 
-				crux = new ItemStack(Item.getByNameOrId(splitCrux[0] + ":" + splitCrux[1]), 1, meta);
+				crux = new ItemStack(Block.getBlockFromName(splitCrux[0] + ":" + splitCrux[1]), 1, meta);
 
 				if(crux.getItem() == Items.AIR) {
 					MysticalCreations.logger.error("Invalid Config! Invalid Crux!");

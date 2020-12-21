@@ -3,8 +3,6 @@ package com.focamacho.mysticalcreations.items;
 import com.blakebr0.cucumber.lib.Colors;
 import com.blakebr0.mysticalagriculture.MysticalAgriculture;
 import com.blakebr0.mysticalagriculture.lib.Tooltips;
-import com.focamacho.mysticalcreations.MysticalCreations;
-import com.focamacho.mysticalcreations.util.IHasModel;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -16,17 +14,15 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class ItemChunk extends Item implements IHasModel {
+public class ItemChunk extends Item {
+
+	private final int tier;
+	private final String name;
 	
-	private static int color;
-	private int tier;
-	private String name;
-	
-	public ItemChunk(String name, int tier, int color) {
+	public ItemChunk(String name, int tier) {
 		this.setRegistryName(name + "_chunk");
 		this.setUnlocalizedName(name + "_chunk");
 		this.setCreativeTab(MysticalAgriculture.CREATIVE_TAB);
-		this.color = color;
 		this.name = name;
 		this.tier = tier;
 	}
@@ -76,10 +72,5 @@ public class ItemChunk extends Item implements IHasModel {
         	tooltip.add(Tooltips.DROP_CHANCE + Colors.DARK_PURPLE + "5%");
         }
     }
-	
-	@Override
-	public void registerModels() {
-		MysticalCreations.proxy.setItemResourceLocation(this, "mysticalcreations:base_chunk");
-	}
 
 }
