@@ -53,16 +53,14 @@ repositories {
     name = "ModMaven"
     url = "modmaven.k-4u.nl"
   }
-  maven {
-	url = "https://maven.tehnut.info"
-  }
+    maven { url "https://maven.tehnut.info" }
 }
 
 dependencies {
-    deobfProvided "mezz.jei:jei_${mc_version}:${jei_version}:api"
+    compile "mezz.jei:jei_${mc_version}:${jei_version}:api"
     runtime "mezz.jei:jei_${mc_version}:${jei_version}"
     
-    deobfCompile "mcp.mobius.waila:Hwyla:1.8.26-B41_1.12.2"
+    compile ("mcp.mobius.waila:Hwyla:1.8.26-B41_1.12.2")
 
     compile fileTree(include: ['*.jar'], dir: 'libs')
 }
