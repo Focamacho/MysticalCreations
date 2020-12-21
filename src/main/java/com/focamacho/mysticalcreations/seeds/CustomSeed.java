@@ -6,7 +6,6 @@ import com.focamacho.mysticalcreations.items.ItemChunk;
 import com.focamacho.mysticalcreations.items.ItemEssence;
 import com.focamacho.mysticalcreations.items.ItemSeed;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nullable;
@@ -21,18 +20,17 @@ public class CustomSeed {
 	private final String name;
 	private final int tier;
 	private final int color;
-	private final ItemStack crux;
+	private String crux;
 	private final ItemChunk chunk;
 	private final List<ResourceLocation> entities;
 	
-	public CustomSeed(String name, Integer tier, Integer color, @Nullable ItemStack crux, @Nullable List<ResourceLocation> entities) {
-		BlockCrop crop = new BlockCrop(name, crux, tier);
+	public CustomSeed(String name, Integer tier, Integer color, String crux, @Nullable List<ResourceLocation> entities) {
 		ItemEssence essence = new ItemEssence(name);
+		BlockCrop crop = new BlockCrop(name, essence, tier);
 		ItemSeed seed = new ItemSeed(name, crop, tier);
 		ItemChunk chunk = new ItemChunk(name, tier);
 
 		crop.setSeed(seed);
-		crop.setEssence(essence);
 
 		this.crop = crop;
 		this.itemCrop = crop.getItemCrop();
@@ -87,8 +85,12 @@ public class CustomSeed {
 		return this.name;
 	}
 	
-	public ItemStack getCrux() {
+	public String getCrux() {
 		return this.crux;
+	}
+
+	public void setCrux(String crux) {
+		this.crux = crux;
 	}
 	
 	public ItemChunk getChunk() {

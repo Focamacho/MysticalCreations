@@ -33,23 +33,23 @@ public class ItemSeed extends ItemSeeds {
 	@Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, ITooltipFlag advanced){
-        switch(this.tier - 1){
-        case 0:
+        switch(this.tier){
+        case 1:
         	tooltip.add(Tooltips.TIER + Colors.YELLOW + "1");
             break;
-        case 1:
+        case 2:
         	tooltip.add(Tooltips.TIER + Colors.GREEN + "2");
             break;
-        case 2:
+        case 3:
         	tooltip.add(Tooltips.TIER + Colors.GOLD + "3");
             break;
-        case 3:
+        case 4:
         	tooltip.add(Tooltips.TIER + Colors.AQUA + "4");
             break;
-        case 4:
+        case 5:
         	tooltip.add(Tooltips.TIER + Colors.RED + "5");
             break;
-        case 5:
+        case 6:
         	tooltip.add(Tooltips.TIER + Colors.DARK_PURPLE + "6");
         	break;
         }
@@ -57,18 +57,18 @@ public class ItemSeed extends ItemSeeds {
 	
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
-		String nameFinal = "";
-		nameFinal += I18n.translateToLocal("item.mysticalcreations.seeds.name.before");
+		StringBuilder nameFinal = new StringBuilder();
+		nameFinal.append(I18n.translateToLocal("item.mysticalcreations.seeds.name.before"));
 		String[] name = this.name.split("_");
 		if(name.length > 1) {
 			for(String string : name) {
-				nameFinal += string.substring(0, 1).toUpperCase() + string.substring(1) + " ";
+				nameFinal.append(string.substring(0, 1).toUpperCase()).append(string.substring(1)).append(" ");
 			}
 		} else {
-			nameFinal = name[0].substring(0, 1).toUpperCase() + name[0].substring(1) + " ";
+			nameFinal.append(name[0].substring(0, 1).toUpperCase()).append(name[0].substring(1)).append(" ");
 		}
-		nameFinal += I18n.translateToLocal("item.mysticalcreations.seeds.name");
-		return nameFinal;
+		nameFinal.append(I18n.translateToLocal("item.mysticalcreations.seeds.name"));
+		return nameFinal.toString();
 	}
 
 }

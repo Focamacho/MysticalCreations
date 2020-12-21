@@ -17,7 +17,7 @@ version = '1.5'
 group = 'com.focamacho.mysticalcreations'
 archivesBaseName = 'MysticalCreations-1.12.2'
 
-sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
 minecraft {
     mappings channel: 'snapshot', version: '20171003-1.12'
@@ -56,10 +56,27 @@ repositories {
 dependencies {
     minecraft 'net.minecraftforge:forge:1.12.2-14.23.5.2854'
 
-    compile "mezz.jei:jei_1.12.2:4.15.0.268:api"
-    runtime "mezz.jei:jei_1.12.2:4.15.0.268"
+    compileOnly "mezz.jei:jei_1.12.2:4.15.0.268:api"
+    runtimeOnly "mezz.jei:jei_1.12.2:4.15.0.268"
 
-    compile ("mcp.mobius.waila:Hwyla:1.8.26-B41_1.12.2")
+    compileOnly ("mcp.mobius.waila:Hwyla:1.8.26-B41_1.12.2")
 
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compileOnly fileTree(include: ['*.jar'], dir: 'libs')
 }
+
+
+jar {
+    manifest {
+        attributes([
+                "Specification-Title": "mysticalcreations",
+                "Specification-Vendor": "mysticalcreations",
+                "Specification-Version": "1",
+                "Implementation-Title": project.name,
+                "Implementation-Version": "${version}",
+                "Implementation-Vendor" :"mysticalcreations",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
+}
+
+jar.finalizedBy('reobfJar')

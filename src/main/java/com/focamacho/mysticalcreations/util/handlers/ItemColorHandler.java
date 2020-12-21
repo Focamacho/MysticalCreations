@@ -5,8 +5,8 @@ import net.minecraft.item.ItemStack;
 
 public class ItemColorHandler implements IItemColor {
 
-	private int tintIndex;
-	private int color;
+	private final int tintIndex;
+	private final int color;
 	
 	public ItemColorHandler(Integer color, int tintIndex) {
 		this.color = color;

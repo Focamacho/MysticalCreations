@@ -18,18 +18,18 @@ public class ItemEssence extends Item {
 	
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
-		String nameFinal = "";
-		nameFinal += I18n.translateToLocal("item.mysticalcreations.essence.name.before");
+		StringBuilder nameFinal = new StringBuilder();
+		nameFinal.append(I18n.translateToLocal("item.mysticalcreations.essence.name.before"));
 		String[] name = this.name.split("_");
 		if(name.length > 1) {
 			for(String string : name) {
-				nameFinal += string.substring(0, 1).toUpperCase() + string.substring(1) + " ";
+				nameFinal.append(string.substring(0, 1).toUpperCase()).append(string.substring(1)).append(" ");
 			}
 		} else {
-			nameFinal = name[0].substring(0, 1).toUpperCase() + name[0].substring(1) + " ";
+			nameFinal.append(name[0].substring(0, 1).toUpperCase()).append(name[0].substring(1)).append(" ");
 		}
-		nameFinal += I18n.translateToLocal("item.mysticalcreations.essence.name");
-		return nameFinal;
+		nameFinal.append(I18n.translateToLocal("item.mysticalcreations.essence.name"));
+		return nameFinal.toString();
 	}
 
 }

@@ -7,6 +7,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -27,7 +28,7 @@ public class FertilizerHandler {
 					return;
 				}
 				
-			    int hook = net.minecraftforge.event.ForgeEventFactory.onApplyBonemeal(event.getEntityPlayer(), event.getWorld(), event.getPos(), state, event.getItemStack(), event.getHand());
+			    int hook = ForgeEventFactory.onApplyBonemeal(event.getEntityPlayer(), event.getWorld(), event.getPos(), state, event.getItemStack(), event.getHand());
 			    if(hook != 0) {
 			    	event.setCanceled(true);
 			       	return;
@@ -39,11 +40,9 @@ public class FertilizerHandler {
 			       } else {
 			    	   event.getWorld().playEvent(2005, event.getPos(), 0);
 			       }
-			       event.getItemStack().shrink(1);
+			       if(!event.getEntityPlayer().isCreative()) event.getItemStack().shrink(1);
 			    }
-			}
-			
-			if(item.getItem().equals(ModItems.itemFertilizedEssence)) {
+			} else if(item.getItem().equals(ModItems.itemFertilizedEssence)) {
 				BlockCrop crop = (BlockCrop) block;
 				IBlockState state = event.getWorld().getBlockState(event.getPos());
 
@@ -70,7 +69,7 @@ public class FertilizerHandler {
 		                if(!event.getWorld().isRemote){
 		                    growable.grow(event.getWorld(), event.getWorld().rand, event.getPos(), state);
 		                    if(crop.isMaxAge(event.getWorld().getBlockState(event.getPos()))) {
-		                    	event.getItemStack().shrink(1);
+		                    	if(!event.getEntityPlayer().isCreative()) event.getItemStack().shrink(1);
 		                    }
 		                }
 		            }

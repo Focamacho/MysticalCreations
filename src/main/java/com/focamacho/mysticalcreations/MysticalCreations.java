@@ -1,33 +1,26 @@
 package com.focamacho.mysticalcreations;
 
 import com.blakebr0.mysticalagriculture.crafting.ReprocessorManager;
-import com.focamacho.mysticalcreations.blocks.BlockCrop;
 import com.focamacho.mysticalcreations.compat.immersiveengineering.CompatImmersive;
 import com.focamacho.mysticalcreations.compat.mysticalagradditions.CompatMysticalAgradditions;
 import com.focamacho.mysticalcreations.config.ModConfig;
-import com.focamacho.mysticalcreations.items.ItemChunk;
-import com.focamacho.mysticalcreations.items.ItemEssence;
-import com.focamacho.mysticalcreations.items.ItemSeed;
-import com.focamacho.mysticalcreations.proxy.CommonProxy;
 import com.focamacho.mysticalcreations.seeds.CustomSeed;
 import com.focamacho.mysticalcreations.seeds.CustomSeeds;
 import com.focamacho.mysticalcreations.util.Reference;
-import com.focamacho.mysticalcreations.util.handlers.FertilizerHandler;
+import com.focamacho.mysticalcreations.util.handlers.ClientHandler;
 import com.focamacho.mysticalcreations.util.handlers.MobDropsHandler;
 import net.minecraft.block.Block;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.apache.logging.log4j.Logger;
 
 import java.io.File;
@@ -42,25 +35,21 @@ public class MysticalCreations {
 	public static final List<Block> blocks = new ArrayList<>();
 
 	public static Logger logger;
-
-	@SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.COMMON_PROXY_CLASS)
-	public static CommonProxy proxy;
 	
 	@EventHandler
-	public void preInit(FMLPreInitializationEvent event) {
-		//Register Events
-		MinecraftForge.EVENT_BUS.register(this);
-
+	public static void preInit(FMLPreInitializationEvent event) {
 		//Logger
 		logger = event.getModLog();
 
 		//Init config
 		ModConfig.init(new File(event.getModConfigurationDirectory(), "mysticalcreations.cfg"));
 
+		//Init Seeds
+		CustomSeeds.init();
 	}
 
 	@EventHandler
-	public void init(FMLInitializationEvent event) {
+	public static void init(FMLInitializationEvent event) {
 		//Garden Cloche Compat
 		if(Loader.isModLoaded("immersiveengineering") && ModConfig.IMMERSIVE_CLOCHE) CompatImmersive.init();
 
@@ -71,15 +60,15 @@ public class MysticalCreations {
 		if(Loader.isModLoaded("mysticalagradditions")) CompatMysticalAgradditions.init();
 
 		//Mystical Agriculture Fertilizer Compat
-		if(com.blakebr0.mysticalagriculture.config.ModConfig.confMysticalFertilizer) MinecraftForge.EVENT_BUS.register(new FertilizerHandler());
+		//if(com.blakebr0.mysticalagriculture.config.ModConfig.confMysticalFertilizer) MinecraftForge.EVENT_BUS.register(new FertilizerHandler());
 
 		//Register Custom Seeds Colors
 		for(CustomSeed seed : CustomSeeds.allSeeds) {
-			MysticalCreations.proxy.registerItemColorHandler(seed.getSeed(), seed.getColor(), 0);
-			MysticalCreations.proxy.registerItemColorHandler(seed.getEssence(), seed.getColor(), 0);
-			MysticalCreations.proxy.registerItemColorHandler(seed.getItemCrop(), seed.getColor(), 1);
-			MysticalCreations.proxy.registerBlockColorHandler(seed);
-			if(seed.getChunk() != null) MysticalCreations.proxy.registerItemColorHandler(seed.getChunk(), seed.getColor(), 0);
+			ClientHandler.registerItemColorHandler(seed.getSeed(), seed.getColor(), 0);
+			ClientHandler.registerItemColorHandler(seed.getEssence(), seed.getColor(), 0);
+			ClientHandler.registerItemColorHandler(seed.getItemCrop(), seed.getColor(), 1);
+			ClientHandler.registerBlockColorHandler(seed);
+			if(seed.getChunk() != null) ClientHandler.registerItemColorHandler(seed.getChunk(), seed.getColor(), 0);
 
 			//Reprocessor Recipes
 			if(com.blakebr0.mysticalagriculture.config.ModConfig.confSeedReprocessor) {
@@ -91,30 +80,32 @@ public class MysticalCreations {
 		MinecraftForge.EVENT_BUS.register(new MobDropsHandler());
 	}
 
-	@SubscribeEvent
-	public static void onItemRegister(RegistryEvent.Register<Item> event) {
-		CustomSeeds.init();
+	@EventHandler
+	public static void postInit(FMLPostInitializationEvent event) {
+		//Set Crux
+		for (CustomSeed seed : CustomSeeds.allSeeds) {
+			if(!seed.getCrux().equals("null")) {
+				String cruxString = seed.getCrux();
+				try {
+					String[] splitCrux = cruxString.split(":");
+					int meta = splitCrux.length > 2 ? Integer.parseInt(splitCrux[2]) : 0;
 
-		MysticalCreations.items.forEach(event.getRegistry()::register);
-	}
+					ItemStack crux = new ItemStack(Block.getBlockFromName(splitCrux[0] + ":" + splitCrux[1]), 1, meta);
 
-	@SubscribeEvent
-	public static void onBlockRegister(RegistryEvent.Register<Block> event) {
-		MysticalCreations.blocks.forEach(event.getRegistry()::register);
-	}
-
-	@SubscribeEvent
-	public static void onModelRegister(ModelRegistryEvent event) {
-		items.forEach(item -> {
-			if(item instanceof BlockCrop.ItemCrop) MysticalCreations.proxy.setItemResourceLocation(item, "mysticalcreations:base_crop");
-			else if(item instanceof ItemEssence) MysticalCreations.proxy.setItemResourceLocation(item, "mysticalcreations:base_essence");
-			else if(item instanceof ItemSeed) MysticalCreations.proxy.setItemResourceLocation(item, "mysticalcreations:base_seeds");
-			else if(item instanceof ItemChunk) MysticalCreations.proxy.setItemResourceLocation(item, "mysticalcreations:base_chunk");
-		});
-
-		blocks.forEach(block -> {
-			if(block instanceof BlockCrop) MysticalCreations.proxy.setCropResourceLocation(block);
-		});
+					if(crux.getItem() == Items.AIR) {
+						MysticalCreations.logger.error("Invalid Config! Invalid Crux!");
+						MysticalCreations.logger.error("Crux: " + cruxString);
+						seed.setCrux("null");
+					} else {
+						seed.getCrop().setCrux(crux);
+					}
+				} catch (Exception e) {
+					MysticalCreations.logger.error("Invalid Config! Invalid Crux!");
+					MysticalCreations.logger.error("Crux: " + cruxString);
+					seed.setCrux("null");
+				}
+			}
+		}
 	}
 
 }

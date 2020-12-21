@@ -29,7 +29,7 @@ public class MobDropsHandler {
         Entity entity = source.getTrueSource();
         List<EntityItem> drops = event.getDrops();
         
-        if(entity != null && entity instanceof EntityPlayer){
+        if(entity instanceof EntityPlayer){
             EntityPlayer player = (EntityPlayer) entity;
             ItemStack held = player.getHeldItemMainhand();
             
@@ -59,16 +59,12 @@ public class MobDropsHandler {
     	int chance = 35 - (tier * 5);
     	return getChance(chance);
     }
-    
-    public void drop(Entity entity, Item item, int amount, int chance, List<EntityItem> drops){
-    	drop(entity, item, amount, 0, chance, drops);
-    }
-    
+
     public void drop(Entity entity, Item item, int amount, int meta, int chance, List<EntityItem> drops){
     	if (chance > 0) {
         	ItemStack stack = new ItemStack(item, amount, meta);
         	EntityItem drop = new EntityItem(entity.world, entity.posX, entity.posY, entity.posZ, stack);
-        	if(drop != null && stack.getCount() >= 1){
+        	if(stack.getCount() >= 1){
         		drops.add(drop);
         	}
     	}
