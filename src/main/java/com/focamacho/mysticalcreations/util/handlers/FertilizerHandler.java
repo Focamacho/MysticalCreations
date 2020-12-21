@@ -2,7 +2,7 @@ package com.focamacho.mysticalcreations.util.handlers;
 
 import com.blakebr0.mysticalagriculture.items.ModItems;
 import com.focamacho.mysticalcreations.blocks.BlockCrop;
-import com.focamacho.mysticalcreations.compat.mysticalagradditions.FertilizableCrops;
+import com.focamacho.mysticalcreations.compat.mysticalagradditions.CompatMysticalAgradditions;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
@@ -22,7 +22,7 @@ public class FertilizerHandler {
 				BlockCrop crop = (BlockCrop) block;
 				IBlockState state = event.getWorld().getBlockState(event.getPos());
 
-				if(crop.getTier() == 6 && !FertilizableCrops.fertilizerTier6) {
+				if(crop.getTier() == 6 && !CompatMysticalAgradditions.fertilizerTier6) {
 					event.setCanceled(true);
 					return;
 				}
@@ -47,7 +47,7 @@ public class FertilizerHandler {
 				BlockCrop crop = (BlockCrop) block;
 				IBlockState state = event.getWorld().getBlockState(event.getPos());
 
-				if(crop.getTier() == 6 && !FertilizableCrops.fertilizerTier6) {
+				if(crop.getTier() == 6 && !CompatMysticalAgradditions.fertilizerTier6) {
 					event.setCanceled(true);
 					return;
 				}

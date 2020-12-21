@@ -13,10 +13,10 @@ import java.util.List;
 public class CruxCropWrapper implements IRecipeWrapper {
 
 	private IJeiHelpers helper;
-	private ItemStack input;
-	private ItemStack crop;
-	private ItemStack crux;
-	private ItemStack output;
+	private final ItemStack input;
+	private final ItemStack crop;
+	private final ItemStack crux;
+	private final ItemStack output;
 
 	public CruxCropWrapper(ItemStack input, ItemStack crop, ItemStack crux, ItemStack output) {
 		this.input = input;

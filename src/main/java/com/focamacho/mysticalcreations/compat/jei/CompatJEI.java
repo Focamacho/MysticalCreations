@@ -17,7 +17,6 @@ public class CompatJEI implements IModPlugin {
 	@Override
 	public void register(IModRegistry registry) {
 		IJeiHelpers jeiHelpers = registry.getJeiHelpers();
-		IGuiHelper guiHelper = jeiHelpers.getGuiHelper();
 
 		registry.addRecipeCatalyst(new ItemStack(ModItems.itemCrafting, 1, 16), CruxCropCategory.UID);
 		registry.handleRecipes(CruxCropWrapper.class, recipe -> recipe.setHelper(jeiHelpers), CruxCropCategory.UID);

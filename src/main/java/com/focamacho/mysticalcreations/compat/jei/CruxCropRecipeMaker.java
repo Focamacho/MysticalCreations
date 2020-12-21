@@ -1,7 +1,7 @@
 package com.focamacho.mysticalcreations.compat.jei;
 
-import com.focamacho.mysticalcreations.lib.CustomSeed;
-import com.focamacho.mysticalcreations.lib.CustomSeeds;
+import com.focamacho.mysticalcreations.seeds.CustomSeed;
+import com.focamacho.mysticalcreations.seeds.CustomSeeds;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;

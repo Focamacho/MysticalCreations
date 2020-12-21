@@ -10,8 +10,7 @@ import java.io.File;
 public class ModConfig {
 	
 	public static Configuration config;
-	public static ModConfig instance;
-	
+
 	public static String[] CUSTOM_SEED_LIST;
 	public static boolean IMMERSIVE_CLOCHE;
 	

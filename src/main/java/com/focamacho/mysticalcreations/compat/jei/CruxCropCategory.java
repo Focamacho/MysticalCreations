@@ -17,7 +17,7 @@ public class CruxCropCategory implements IRecipeCategory<CruxCropWrapper> {
 	
     public static final String UID = "mysticalcreations:crux_crop_jei";
 
-    private IDrawable background;
+    private final IDrawable background;
 
     public CruxCropCategory(IGuiHelper helper) {
         this.background = helper.createDrawable(ResourceHelper.getResource(Reference.MOD_ID, "textures/gui/crux_crop_jei.png"), 0, 0, 136, 65);

@@ -3,8 +3,6 @@ package com.focamacho.mysticalcreations.blocks;
 import com.blakebr0.cucumber.util.Utils;
 import com.blakebr0.mysticalagriculture.config.ModConfig;
 import com.blakebr0.mysticalagriculture.items.ModItems;
-import com.focamacho.mysticalcreations.MysticalCreations;
-import com.focamacho.mysticalcreations.util.IHasModel;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.SoundType;
@@ -24,15 +22,15 @@ import net.minecraftforge.common.EnumPlantType;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class BlockCrop extends BlockCrops implements IHasModel {
+public class BlockCrop extends BlockCrops {
 	
     private static final AxisAlignedBB CROPS_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.25D, 1.0D);
     private Item seed;
-    private Item crop;
+    private final Item crop;
     private Item essence;
-    private String name;
-    private ItemStack crux;
-    private int tier;
+    private final String name;
+    private final ItemStack crux;
+    private final int tier;
     
     public BlockCrop(String name, @Nullable ItemStack crux, int tier){
 		this.setUnlocalizedName(name + "_crop");
@@ -117,10 +115,6 @@ public class BlockCrop extends BlockCrops implements IHasModel {
     public void setSeed(Item seed){
     	this.seed = seed;
     }
-
-    public ItemStack getCrux() {
-    	return this.crux;
-    }
     
     @Override
     public Item getSeed(){
@@ -166,13 +160,10 @@ public class BlockCrop extends BlockCrops implements IHasModel {
         
         if(age == 7){
         	if(ModConfig.confFertilizedEssenceChance > 0){
-        		if(rand.nextInt(100 / ModConfig.confFertilizedEssenceChance) > 0){
-        			fertilizer = 0;
-        		} else {
-        			fertilizer = 1;
+        		if(!(rand.nextInt(100 / ModConfig.confFertilizedEssenceChance) > 0)) {
+					fertilizer = 1;
         		}
-        	} 
-        	else fertilizer = 0;
+        	}
         }
         
         if(age == 7){
@@ -191,14 +182,9 @@ public class BlockCrop extends BlockCrops implements IHasModel {
         if(fertilizer > 0 && ModConfig.confFertilizedEssence){ drops.add(new ItemStack(ModItems.itemFertilizedEssence, fertilizer, 0)); }
     }
 	
-	@Override
-	public void registerModels() {
-		MysticalCreations.proxy.setCropResourceLocation(this);
-	}
-	
-	class ItemCrop extends ItemBlock implements IHasModel {
+	public class ItemCrop extends ItemBlock {
 
-		private String name;
+		private final String name;
 		
 		public ItemCrop(Block block, String name) {
 			super(block);
@@ -209,24 +195,19 @@ public class BlockCrop extends BlockCrops implements IHasModel {
 		
 		@Override
 		public String getItemStackDisplayName(ItemStack stack) {
-			String nameFinal = "";
-			nameFinal += I18n.translateToLocal("tile.mysticalcreations.crop.name.before");
+			StringBuilder nameFinal = new StringBuilder();
+			nameFinal.append(I18n.translateToLocal("tile.mysticalcreations.crop.name.before"));
 			String[] name = this.name.split("_");
 			if(name.length > 1) {
 				for(String string : name) {
-					nameFinal += string.substring(0, 1).toUpperCase() + string.substring(1) + " ";
+					nameFinal.append(string.substring(0, 1).toUpperCase()).append(string.substring(1)).append(" ");
 				}
 			} else {
-				nameFinal = name[0].substring(0, 1).toUpperCase() + name[0].substring(1) + " ";
+				nameFinal.append(name[0].substring(0, 1).toUpperCase()).append(name[0].substring(1)).append(" ");
 			}
-			nameFinal += I18n.translateToLocal("tile.mysticalcreations.crop.name");
-			return nameFinal;
+			nameFinal.append(I18n.translateToLocal("tile.mysticalcreations.crop.name"));
+			return nameFinal.toString();
 		}
 
-		@Override
-		public void registerModels() {
-			MysticalCreations.proxy.setItemResourceLocation(this, "mysticalcreations:base_crop");
-		}
-		
 	}
 }

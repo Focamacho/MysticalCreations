@@ -1,8 +1,8 @@
 package com.focamacho.mysticalcreations.compat.immersiveengineering;
 
 import blusunrize.immersiveengineering.api.tool.BelljarHandler;
-import com.focamacho.mysticalcreations.lib.CustomSeed;
-import com.focamacho.mysticalcreations.lib.CustomSeeds;
+import com.focamacho.mysticalcreations.seeds.CustomSeed;
+import com.focamacho.mysticalcreations.seeds.CustomSeeds;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

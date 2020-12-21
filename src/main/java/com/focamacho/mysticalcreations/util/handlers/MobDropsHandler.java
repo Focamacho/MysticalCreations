@@ -1,8 +1,8 @@
 package com.focamacho.mysticalcreations.util.handlers;
 
 import com.blakebr0.mysticalagriculture.items.ModItems;
-import com.focamacho.mysticalcreations.lib.CustomSeed;
-import com.focamacho.mysticalcreations.lib.CustomSeeds;
+import com.focamacho.mysticalcreations.seeds.CustomSeed;
+import com.focamacho.mysticalcreations.seeds.CustomSeeds;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
