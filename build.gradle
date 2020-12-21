@@ -1,43 +1,38 @@
 buildscript {
     repositories {
+        maven { url = 'https://files.minecraftforge.net/maven' }
         jcenter()
-        maven { url = "http://files.minecraftforge.net/maven" }
+        mavenCentral()
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:3.+'
     }
 }
 
-apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'eclipse'
+apply plugin: 'maven-publish'
 
-version = "1.4"
-group = "com.focamacho.mysticalcreations"
-archivesBaseName = "mysticalcreations"
+version = '1.5'
+group = 'com.focamacho.mysticalcreations'
+archivesBaseName = 'MysticalCreations-1.12.2'
 
-sourceCompatibility = targetCompatibility = '1.8'
-compileJava {
-    sourceCompatibility = targetCompatibility = '1.8'
-}
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 
 minecraft {
-    version = "1.12.2-14.23.5.2847"
-    runDir = "run"
+    mappings channel: 'snapshot', version: '20171003-1.12'
 
-    mappings = "snapshot_20171003"
-}
+    runs {
+        client {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.console.level', 'debug'
+        }
 
-processResources {
-    inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraft.version
-
-    from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod.info'
-
-        expand 'version':project.version, 'mcversion':project.minecraft.version
-    }
-
-    from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
+        server {
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.console.level', 'debug'
+        }
     }
 }
 
@@ -45,21 +40,25 @@ repositories {
     flatDir {
         dirs 'libs'
     }
-  maven {
-    name = "Progwml6 maven"
-    url = "http://dvs1.progwml6.com/files/maven"
-  }
-  maven {
-    name = "ModMaven"
-    url = "modmaven.k-4u.nl"
-  }
-    maven { url "https://maven.tehnut.info" }
+    maven {
+        name = "Progwml6 maven"
+        url = "http://dvs1.progwml6.com/files/maven"
+    }
+    maven {
+        name = "ModMaven"
+        url = "modmaven.k-4u.nl"
+    }
+    maven {
+        url = "https://maven.tehnut.info"
+    }
 }
 
 dependencies {
-    compile "mezz.jei:jei_${mc_version}:${jei_version}:api"
-    runtime "mezz.jei:jei_${mc_version}:${jei_version}"
-    
+    minecraft 'net.minecraftforge:forge:1.12.2-14.23.5.2854'
+
+    compile "mezz.jei:jei_1.12.2:4.15.0.268:api"
+    runtime "mezz.jei:jei_1.12.2:4.15.0.268"
+
     compile ("mcp.mobius.waila:Hwyla:1.8.26-B41_1.12.2")
 
     compile fileTree(include: ['*.jar'], dir: 'libs')
