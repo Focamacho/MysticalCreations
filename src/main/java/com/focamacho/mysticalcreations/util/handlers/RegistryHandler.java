@@ -31,13 +31,13 @@ public class RegistryHandler {
     @SubscribeEvent
     public static void onModelRegister(ModelRegistryEvent event) {
         MysticalCreations.items.forEach(item -> {
-            if(item instanceof ItemCrop) ClientHandler.setItemResourceLocation(item, "mysticalcreations:base_crop");
-            else if(item instanceof ItemEssence) ClientHandler.setItemResourceLocation(item, "mysticalcreations:base_essence");
-            else if(item instanceof ItemSeed) ClientHandler.setItemResourceLocation(item, "mysticalcreations:base_seeds");
-            else if(item instanceof ItemChunk) ClientHandler.setItemResourceLocation(item, "mysticalcreations:base_chunk");
+            if(item instanceof ItemCrop) MysticalCreations.proxy.setItemResourceLocation(item, "mysticalcreations:base_crop");
+            else if(item instanceof ItemEssence) MysticalCreations.proxy.setItemResourceLocation(item, "mysticalcreations:base_essence");
+            else if(item instanceof ItemSeed) MysticalCreations.proxy.setItemResourceLocation(item, "mysticalcreations:base_seeds");
+            else if(item instanceof ItemChunk) MysticalCreations.proxy.setItemResourceLocation(item, "mysticalcreations:base_chunk");
         });
 
-        MysticalCreations.blocks.forEach(ClientHandler::setCropResourceLocation);
+        MysticalCreations.blocks.forEach(MysticalCreations.proxy::setCropResourceLocation);
     }
 
 }
