@@ -13,7 +13,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '1.6'
+version = '1.6.1'
 group = 'com.focamacho.mysticalcreations'
 archivesBaseName = 'MysticalCreations-1.12.2'
 

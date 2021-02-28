@@ -11,7 +11,11 @@ public class CompatImmersive {
 
 	public static void init() {
 		for(CustomSeed seed : CustomSeeds.allSeeds) {
-			BelljarHandler.cropHandler.register(new ItemStack(seed.getSeed(),1), new ItemStack[]{new ItemStack(seed.getEssence(),1)}, seed.getCrux() == null ? Item.getItemFromBlock(Blocks.DIRT) : seed.getCrux(), seed.getCrop().getDefaultState());
+			BelljarHandler.cropHandler.register(new ItemStack(seed.getSeed(),1),
+					new ItemStack[]{new ItemStack(seed.getEssence(),1)},
+					seed.getCrop().getCrux() == null ? Item.getItemFromBlock(Blocks.DIRT) : seed.getCrop().getCrux(),
+					seed.getCrop().getDefaultState());
 		}
 	}
+
 }

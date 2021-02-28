@@ -54,9 +54,6 @@ public class MysticalCreations {
 
 	@EventHandler
 	public static void init(FMLInitializationEvent event) {
-		//Garden Cloche Compat
-		if(Loader.isModLoaded("immersiveengineering") && ModConfig.IMMERSIVE_CLOCHE) CompatImmersive.init();
-
 		//Waila Compat
 		FMLInterModComms.sendMessage("waila", "register", "com.focamacho.mysticalcreations.compat.waila.WailaDataProvider.callbackRegister");
 
@@ -88,7 +85,7 @@ public class MysticalCreations {
 	public static void postInit(FMLPostInitializationEvent event) {
 		//Set Crux
 		for (CustomSeed seed : CustomSeeds.allSeeds) {
-			if(!seed.getCrux().equals("null")) {
+			if(!seed.getCrux().equalsIgnoreCase("null")) {
 				String cruxString = seed.getCrux();
 				try {
 					String[] splitCrux = cruxString.split(":");
@@ -110,6 +107,9 @@ public class MysticalCreations {
 				}
 			}
 		}
+
+		//Garden Cloche Compat
+		if(Loader.isModLoaded("immersiveengineering") && ModConfig.IMMERSIVE_CLOCHE) CompatImmersive.init();
 	}
 
 }
